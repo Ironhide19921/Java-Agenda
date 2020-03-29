@@ -40,8 +40,8 @@ public class VentanaPersona extends JFrame
 	{
 		super();
 		
-		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		// ORIGINAL --> setBounds(100, 100, 543, 183);
 		setBounds(100, 100, 450, 300);
 		// ORIGINAL --> contentPane = new JPanel();
