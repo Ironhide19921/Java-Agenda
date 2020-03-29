@@ -8,12 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-//ORIGINAL --> import javax.swing.border.EmptyBorder;
 
 public class VentanaPersona extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
-	// ORIGINAL --> private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtTelefono;
 	private JTextField txtEmail;
@@ -41,27 +39,17 @@ public class VentanaPersona extends JFrame
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		//setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		// ORIGINAL --> setBounds(100, 100, 543, 183);
 		setBounds(100, 100, 450, 300);
-		// ORIGINAL --> contentPane = new JPanel();
-		// ORIGINAL --> contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		// ORIGINAL --> setContentPane(contentPane);
-		// ORIGINAL --> contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		// ORIGINAL --> panel.setBounds(10, 11, 307, 123);
-		// ORIGINAL --> contentPane.add(panel);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
-		// ORIGINAL --> lblNombreYApellido.setBounds(10, 11, 113, 14);
 		lblNombreYApellido.setBounds(30, 41, 119, 16);
 		panel.add(lblNombreYApellido);
 		
 		JLabel lblTelefono = new JLabel("Telefono");
-		// ORIGINAL --> lblTelfono.setBounds(10, 52, 113, 14);
 		lblTelefono.setBounds(30, 79, 61, 16);
 		panel.add(lblTelefono);
 		
@@ -94,13 +82,11 @@ public class VentanaPersona extends JFrame
         panel.add(lblLocalidad);
 		
 		txtNombre = new JTextField();
-		// ORIGINAL --> txtNombre.setBounds(133, 8, 164, 20);
 		txtNombre.setBounds(188, 36, 130, 26);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		txtTelefono = new JTextField();
-		// ORIGINAL --> txtTelefono.setBounds(133, 49, 164, 20);
 		txtTelefono.setBounds(188, 74, 130, 26);
 		panel.add(txtTelefono);
 		txtTelefono.setColumns(10);
@@ -143,7 +129,6 @@ public class VentanaPersona extends JFrame
         panel.add(comboBoxLocalidad);
 		
 		btnAgregarPersona = new JButton("Agregar");
-		// ORIGINAL --> btnAgregarPersona.setBounds(208, 92, 89, 23);
 		btnAgregarPersona.setBounds(317, 442, 117, 29);
 		panel.add(btnAgregarPersona);
 		
