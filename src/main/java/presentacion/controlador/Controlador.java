@@ -5,17 +5,22 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import modelo.Agenda;
+import modelo.Localidad;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
+import dto.LocalidadDTO;
 import dto.PersonaDTO;
 
 public class Controlador implements ActionListener
 {
 		private Vista vista;
 		private List<PersonaDTO> personasEnTabla;
-		private VentanaPersona ventanaPersona; 
+		private VentanaPersona ventanaPersona;
+		private VentanaLocalidad ventanaLocalidad;
 		private Agenda agenda;
+		private Localidad localidad;
 		
 		public Controlador(Vista vista, Agenda agenda)
 		{
@@ -23,13 +28,23 @@ public class Controlador implements ActionListener
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
+			this.vista.getBtnAbmLocalidad().addActionListener(l->ventanaAgregarLocalidad(l));
+			
 			this.ventanaPersona = VentanaPersona.getInstance();
 			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
+			// Agregado evento agregarLocalidad
+			this.ventanaLocalidad = VentanaLocalidad.getInstance();
+			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(l->ventanaAgregarLocalidad(l));
+			
 			this.agenda = agenda;
 		}
 		
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersona.mostrarVentana();
+		}
+		// Agregado metodo agregarLocalidad
+		private void ventanaAgregarLocalidad(ActionEvent l) {
+			this.ventanaLocalidad.mostrarVentana();
 		}
 
 		private void guardarPersona(ActionEvent p) {
@@ -39,6 +54,15 @@ public class Controlador implements ActionListener
 			this.agenda.agregarPersona(nuevaPersona);
 			this.refrescarTabla();
 			this.ventanaPersona.cerrar();
+		}
+		
+		private void guardarLocalidad(ActionEvent p) {
+			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
+//			String tel = ventanaPersona.getTxtTelefono().getText();
+			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
+			this.localidad.agregarLocalidad(nuevaLocalidad);
+			this.refrescarTabla();
+//			this.ventanaPersona.cerrar();
 		}
 
 		private void mostrarReporte(ActionEvent r) {
