@@ -26,7 +26,8 @@ public class Vista
 	private JButton btnReporte;
 	private JButton btnAbmLocalidades;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"Nombre y apellido","Telefono"};
+	private  String[] nombreColumnas = {"Nombre y apellido","Telefono","Email",
+			"Cumpleaños","Calle","Altura","Piso","Depto"};
 
 	public Vista() 
 	{
@@ -39,16 +40,17 @@ public class Vista
 	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 510, 300);
+		frame.setBounds(100, 100, 755, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 500, 262);
+		panel.setBounds(0, 0, 735, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 470, 182);
+		spPersonas.setBounds(10, 11, 725, 182);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -58,6 +60,18 @@ public class Vista
 		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
 		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(2).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(3).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(4).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(5).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(5).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(6).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(6).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(7).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(7).setResizable(false);
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
@@ -78,7 +92,7 @@ public class Vista
 		panel.add(btnReporte);
 		
 		btnAbmLocalidades = new JButton("Localidades");
-		btnAbmLocalidades.setBounds(407, 228, 96, 23);
+		btnAbmLocalidades.setBounds(407, 228, 103, 23);
 		panel.add(btnAbmLocalidades);
 	}
 	
