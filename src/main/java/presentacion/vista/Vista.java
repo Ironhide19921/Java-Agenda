@@ -39,13 +39,18 @@ public class Vista
 	private void initialize() 
 	{
 		frame = new JFrame();
+
 		frame.setBounds(100, 100, 510, 300);
 		frame.setBounds(100, 100, 755, 300);
+
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+
 		panel.setBounds(0, 0, 735, 262);
+
+
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
