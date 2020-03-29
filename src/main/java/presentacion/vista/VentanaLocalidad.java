@@ -76,9 +76,12 @@ public class VentanaLocalidad extends JFrame
 	public void cerrar()
 	{
 		this.txtNombre.setText("");
-
+		System.out.println(this.isShowing());
 		this.dispose();
+		System.out.println(this.isShowing());
 	}
+	
+
 	
 }
 

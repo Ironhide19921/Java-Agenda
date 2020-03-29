@@ -1,6 +1,7 @@
 package presentacion.vista;
 
 import java.awt.BorderLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -8,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import dto.LocalidadDTO;
 
 public class VentanaPersona extends JFrame 
 {
@@ -20,8 +22,11 @@ public class VentanaPersona extends JFrame
 	private JTextField txtAltura;
 	private JTextField txtPiso;
 	private JTextField txtDepto;
+	private JComboBox comboBoxLocalidad;
 	private JButton btnAgregarPersona;
 	private static VentanaPersona INSTANCE;
+//	private List<LocalidadDTO> localidades;
+//	private static Localidad localidad;
 	
 	public static VentanaPersona getInstance()
 	{
@@ -37,6 +42,7 @@ public class VentanaPersona extends JFrame
 	private VentanaPersona() 
 	{
 		super();
+//		this.localidad = localidad;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -121,11 +127,15 @@ public class VentanaPersona extends JFrame
         panel.add(txtDepto);
         txtDepto.setColumns(10);
         
-        JComboBox comboBoxLocalidad = new JComboBox();
+//        JComboBox<LocalidadDTO> comboBoxLocalidad = new JComboBox<LocalidadDTO>();
+        comboBoxLocalidad = new JComboBox<String>();
         comboBoxLocalidad.setBounds(188, 350, 130, 27);
-        comboBoxLocalidad.addItem("Uno");
-        comboBoxLocalidad.addItem("Dos");
-        comboBoxLocalidad.addItem("Tres");
+//        List<LocalidadDTO> valores = rellenarListaLocalidades();
+        
+        
+//        comboBoxLocalidad.addItem("Uno");
+//        comboBoxLocalidad.addItem("Dos");
+//        comboBoxLocalidad.addItem("Tres");
         panel.add(comboBoxLocalidad);
 		
 		btnAgregarPersona = new JButton("Agregar");
@@ -134,7 +144,35 @@ public class VentanaPersona extends JFrame
 		
 		this.setVisible(false);
 	}
+
+	@SuppressWarnings("unchecked")
+	public void rellenarListaLocalidades(List<LocalidadDTO> localidades) {
+		
+		for (LocalidadDTO valor : localidades)
+        {
+        	this.comboBoxLocalidad.addItem(valor.getNombre());
+        }
+	}
 	
+//	private List<LocalidadDTO> rellenarListaLocalidades()
+//	{
+//		String consulta = "select * from localidades";
+//		return null;
+////		return this.localidad.obtenerLocalidades();
+//	}
+	
+	public JComboBox getComboBoxLocalidad() {
+		return comboBoxLocalidad;
+	}
+
+	public void setComboBoxLocalidad(JComboBox comboBoxLocalidad) {
+		this.comboBoxLocalidad = comboBoxLocalidad;
+	}
+
+//	public void setLocalidades(List<LocalidadDTO> localidades) {
+//		this.localidades = localidades;
+//	}
+
 	public void mostrarVentana()
 	{
 		this.setVisible(true);
@@ -192,6 +230,7 @@ public class VentanaPersona extends JFrame
 		this.txtDepto.setText("");
 		this.dispose();
 	}
+	
 	
 }
 

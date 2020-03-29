@@ -46,15 +46,9 @@ public class VistaLocalidad extends JFrame
 	{
 		super();
 		
-		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		// ORIGINAL --> setBounds(100, 100, 543, 183);
 		setBounds(100, 100, 450, 300);
-		// ORIGINAL --> contentPane = new JPanel();
-		// ORIGINAL --> contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		// ORIGINAL --> setContentPane(contentPane);
-		// ORIGINAL --> contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 500, 262);
 		// ORIGINAL --> contentPane.add(panel);

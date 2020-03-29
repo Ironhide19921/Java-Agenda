@@ -2,6 +2,8 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
 
 import modelo.Agenda;
@@ -35,22 +37,29 @@ public class Controlador implements ActionListener
 			
 			this.ventanaPersona = VentanaPersona.getInstance();
 			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
-			// Agregado evento agregarLocalidad
 			this.vistaLocalidad = VistaLocalidad.getInstance();
 			this.vistaLocalidad.getBtnAgregarLocalidad().addActionListener(v->mostrarVentanaLocalidad(v));
 			this.vistaLocalidad.getBtnBorrarLocalidad().addActionListener(b->borrarLocalidad(b));
-			
+//			this.vistaLocalidad.addWindowListener(g->entro(g));
 			this.ventanaLocalidad = VentanaLocalidad.getInstance();
 			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(h->guardarLocalidad(h));
+//			this.ventanaLocalidad.addWindowStateListener(c->refrescarListaLocalidades(c));
 			
 			this.agenda = agenda;
 			this.localidad = localidad;
 		}
+
 		
+//		private Object refrescarListaLocalidades(WindowEvent c) {
+//			System.out.println("hola");
+////			this.ventanaLocalidad.windowClosed()
+//			return null;
+//		}
+
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersona.mostrarVentana();
 		}
-		// Agregado metodo agregarLocalidad
+
 		private void mostrarVistaLocalidad(ActionEvent l) {
 			this.vistaLocalidad.mostrarVentana();
 		}
@@ -70,10 +79,7 @@ public class Controlador implements ActionListener
 		
 		private void guardarLocalidad(ActionEvent p) {
 			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
-			System.out.println(nombre);
-//			String tel = ventanaPersona.getTxtTelefono().getText();
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
-			System.out.println(nuevaLocalidad.getNombre());
 			this.localidad.agregarLocalidad(nuevaLocalidad);
 			this.refrescarTablaLocalidades();
 			this.ventanaLocalidad.cerrar();
@@ -110,6 +116,7 @@ public class Controlador implements ActionListener
 		{
 			this.refrescarTabla();
 			this.refrescarTablaLocalidades();
+			this.consultarLocalidades();
 			this.vista.show();
 		}
 		
@@ -123,9 +130,13 @@ public class Controlador implements ActionListener
 		{
 			this.localidadesEnTabla = localidad.obtenerLocalidades();
 			this.vistaLocalidad.llenarTabla(this.localidadesEnTabla);
-			//this.vista.llenarTabla(this.localidadesEnTabla);
 		}
 		
+		private void consultarLocalidades()
+		{
+			this.ventanaPersona.rellenarListaLocalidades(localidad.obtenerLocalidades());
+			
+		}
 		
 
 		@Override
