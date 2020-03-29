@@ -7,6 +7,7 @@ import java.util.List;
 import modelo.Agenda;
 import modelo.Localidad;
 import presentacion.reportes.ReporteAgenda;
+import presentacion.vista.VistaLocalidad;
 import presentacion.vista.VentanaLocalidad;
 import presentacion.vista.VentanaPersona;
 import presentacion.vista.Vista;
@@ -17,33 +18,44 @@ public class Controlador implements ActionListener
 {
 		private Vista vista;
 		private List<PersonaDTO> personasEnTabla;
+		private List<LocalidadDTO> localidadesEnTabla;
 		private VentanaPersona ventanaPersona;
+		private VistaLocalidad vistaLocalidad;
 		private VentanaLocalidad ventanaLocalidad;
 		private Agenda agenda;
 		private Localidad localidad;
 		
-		public Controlador(Vista vista, Agenda agenda)
+		public Controlador(Vista vista, Agenda agenda, Localidad localidad)
 		{
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
-			this.vista.getBtnAbmLocalidad().addActionListener(l->ventanaAgregarLocalidad(l));
+			this.vista.getBtnAbmLocalidad().addActionListener(l->mostrarVistaLocalidad(l));
 			
 			this.ventanaPersona = VentanaPersona.getInstance();
 			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
 			// Agregado evento agregarLocalidad
+			this.vistaLocalidad = VistaLocalidad.getInstance();
+			this.vistaLocalidad.getBtnAgregarLocalidad().addActionListener(v->mostrarVentanaLocalidad(v));
+			this.vistaLocalidad.getBtnBorrarLocalidad().addActionListener(b->borrarLocalidad(b));
+			
 			this.ventanaLocalidad = VentanaLocalidad.getInstance();
-			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(l->ventanaAgregarLocalidad(l));
+			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(h->guardarLocalidad(h));
 			
 			this.agenda = agenda;
+			this.localidad = localidad;
 		}
 		
 		private void ventanaAgregarPersona(ActionEvent a) {
 			this.ventanaPersona.mostrarVentana();
 		}
 		// Agregado metodo agregarLocalidad
-		private void ventanaAgregarLocalidad(ActionEvent l) {
+		private void mostrarVistaLocalidad(ActionEvent l) {
+			this.vistaLocalidad.mostrarVentana();
+		}
+		
+		private void mostrarVentanaLocalidad(ActionEvent v) {
 			this.ventanaLocalidad.mostrarVentana();
 		}
 
@@ -58,11 +70,13 @@ public class Controlador implements ActionListener
 		
 		private void guardarLocalidad(ActionEvent p) {
 			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
+			System.out.println(nombre);
 //			String tel = ventanaPersona.getTxtTelefono().getText();
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
+			System.out.println(nuevaLocalidad.getNombre());
 			this.localidad.agregarLocalidad(nuevaLocalidad);
-			this.refrescarTabla();
-//			this.ventanaPersona.cerrar();
+			this.refrescarTablaLocalidades();
+			this.ventanaLocalidad.cerrar();
 		}
 
 		private void mostrarReporte(ActionEvent r) {
@@ -81,9 +95,21 @@ public class Controlador implements ActionListener
 			this.refrescarTabla();
 		}
 		
+		public void borrarLocalidad(ActionEvent b)
+		{
+			int[] filasSeleccionadas = this.vistaLocalidad.getTablaLocalidades().getSelectedRows();
+			for (int fila : filasSeleccionadas)
+			{
+				this.localidad.borrarLocalidad(this.localidadesEnTabla.get(fila));
+			}
+			
+			this.refrescarTablaLocalidades();
+		}
+		
 		public void inicializar()
 		{
 			this.refrescarTabla();
+			this.refrescarTablaLocalidades();
 			this.vista.show();
 		}
 		
@@ -92,6 +118,15 @@ public class Controlador implements ActionListener
 			this.personasEnTabla = agenda.obtenerPersonas();
 			this.vista.llenarTabla(this.personasEnTabla);
 		}
+		
+		private void refrescarTablaLocalidades()
+		{
+			this.localidadesEnTabla = localidad.obtenerLocalidades();
+			this.vistaLocalidad.llenarTabla(this.localidadesEnTabla);
+			//this.vista.llenarTabla(this.localidadesEnTabla);
+		}
+		
+		
 
 		@Override
 		public void actionPerformed(ActionEvent e) { }
