@@ -21,6 +21,7 @@ public class Vista
 	private JFrame frame;
 	private JTable tablaPersonas;
 	private JButton btnAgregar;
+	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private JButton btnAbmLocalidades;
@@ -84,7 +85,7 @@ public class Vista
 		btnAgregar.setBounds(10, 228, 89, 23);
 		panel.add(btnAgregar);
 		
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
 		btnEditar.setBounds(109, 228, 89, 23);
 		panel.add(btnEditar);
 		
@@ -128,6 +129,9 @@ public class Vista
 	public JButton getBtnAgregar() 
 	{
 		return btnAgregar;
+	}
+	public JButton getBtnEditar() {
+		return btnEditar;
 	}
 
 	public JButton getBtnBorrar() 

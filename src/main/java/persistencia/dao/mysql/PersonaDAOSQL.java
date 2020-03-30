@@ -16,6 +16,8 @@ public class PersonaDAOSQL implements PersonaDAO
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
+	private static final String update = "UPDATE personas SET nombre=? WHERE idPersona=?"/*, telefono=?, email=?, cumpleanios=?, calle=?,"
+			+ " altura=?, piso=?, depto=?*/;
 		
 	public boolean insert(PersonaDTO persona)
 	{
@@ -51,6 +53,30 @@ public class PersonaDAOSQL implements PersonaDAO
 		}
 		
 		return isInsertExitoso;
+	}
+	
+	@Override
+	public void update(PersonaDTO persona) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try{
+			statement = conexion.prepareStatement(update);
+			statement.setString(1, persona.getNombre());
+			/*statement.setString(3, persona.getTelefono());
+			statement.setString(4, persona.getEmail());
+			statement.setString(5, persona.getCumpleanios());
+			statement.setString(6, persona.getCalle());
+			statement.setString(7, persona.getAltura());
+			statement.setString(8, persona.getPiso());
+			statement.setString(9, persona.getDepto());*/
+			statement.setString(2, Integer.toString(persona.getIdPersona()));
+			if(statement.executeUpdate() > 0){
+				conexion.commit();
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean delete(PersonaDTO persona_a_eliminar)
@@ -110,4 +136,6 @@ public class PersonaDAOSQL implements PersonaDAO
 		String depto = resultSet.getString("Depto");
 		return new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto);
 	}
+
+	
 }
