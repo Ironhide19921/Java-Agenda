@@ -166,6 +166,7 @@ public class Controlador implements ActionListener
 		{
 			this.refrescarTabla();
 			this.refrescarTablaLocalidades();
+			this.refrescarTablaTiposContacto();
 			this.consultarLocalidades();
 			this.consultarTiposContacto();
 			this.vista.show();

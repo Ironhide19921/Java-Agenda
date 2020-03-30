@@ -101,7 +101,7 @@ public class Vista
 		panel.add(btnAbmLocalidades);
 		
 		btnAbmTiposContacto = new JButton("TiposContacto");
-		btnAbmTiposContacto.setBounds(507, 228, 96, 23);
+		btnAbmTiposContacto.setBounds(520, 228, 96, 23);
 		panel.add(btnAbmTiposContacto);
 	}
 	
