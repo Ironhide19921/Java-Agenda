@@ -2,6 +2,7 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 //import java.awt.event.WindowEvent;
 //import java.awt.event.WindowListener;
 import java.util.List;
@@ -98,7 +99,25 @@ public class Controlador implements ActionListener
 			String altura = ventanaPersona.getTxtAltura().getText();
 			String piso = ventanaPersona.getTxtPiso().getText();
 			String depto = ventanaPersona.getTxtDepto().getText();
-			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto);
+			
+			int idLocalidad = 0;
+			for (LocalidadDTO l : this.localidad.obtenerLocalidades()) {
+				if (l.getNombre().equalsIgnoreCase(String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem()))) {
+					idLocalidad = l.getIdLocalidad();
+				}
+				
+			}
+			LocalidadDTO localidad = new LocalidadDTO(idLocalidad, String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem()));
+			
+			int idTipoContacto = 0;
+			for (TipoContactoDTO t : tipoContacto.obtenerTiposContacto()) {
+				if (t.getNombre().equalsIgnoreCase(String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem()))) {
+					idTipoContacto = t.getIdTipoContacto();
+				}
+			}			
+			TipoContactoDTO tipoContacto =  new TipoContactoDTO(idTipoContacto, String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem()));
+			
+			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto, localidad, tipoContacto);
 			this.agenda.agregarPersona(nuevaPersona);
 			this.refrescarTabla();
 			this.ventanaPersona.cerrar();
@@ -119,7 +138,7 @@ public class Controlador implements ActionListener
 //				String altura = ventanaPersona.getTxtAltura().getText();
 //				String piso = ventanaPersona.getTxtPiso().getText();
 //				String depto = ventanaPersona.getTxtDepto().getText();
-				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "");
+				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "", null, null);
 				this.agenda.editarPersona(nuevaPersona);
 				this.refrescarTabla();
 			}

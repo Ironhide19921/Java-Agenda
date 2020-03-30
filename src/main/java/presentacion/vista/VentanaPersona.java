@@ -171,6 +171,14 @@ public class VentanaPersona extends JFrame
 	public void setComboBoxLocalidad(JComboBox<String> comboBoxLocalidad) {
 		this.comboBoxLocalidad = comboBoxLocalidad;
 	}
+	
+	public JComboBox<String> getComboBoxTipoContacto() {
+		return this.comboBoxTipoContacto;
+	}
+
+	public void setComboBoxTipoContacto(JComboBox<String> comboBoxTipoContacto) {
+		this.comboBoxTipoContacto = comboBoxTipoContacto;
+	}
 
 	public void mostrarVentana()
 	{
