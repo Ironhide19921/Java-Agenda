@@ -90,7 +90,7 @@ public class VentanaPersona extends JFrame
         panel.add(lblLocalidad);
         
         JLabel lblTipoContacto = new JLabel("TipoContacto");
-        lblTipoContacto.setBounds(30, 400, 61, 16);
+        lblTipoContacto.setBounds(30, 400, 75, 16);
         panel.add(lblTipoContacto);
 		
 		txtNombre = new JTextField();
@@ -175,7 +175,7 @@ public class VentanaPersona extends JFrame
 	public void mostrarVentana()
 	{
 		this.setVisible(true);
-		this.setSize(440,499);
+		this.setSize(440,530);
 	}
 	
 	public JTextField getTxtNombre() 
