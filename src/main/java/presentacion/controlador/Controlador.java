@@ -38,6 +38,7 @@ public class Controlador implements ActionListener
 		{
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
+			this.vista.getBtnEditar().addActionListener(e->editarPersona(e));
 			this.vista.getBtnBorrar().addActionListener(s->borrarPersona(s));
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
 			this.vista.getBtnAbmLocalidad().addActionListener(l->mostrarVistaLocalidad(l));
@@ -103,6 +104,29 @@ public class Controlador implements ActionListener
 			this.ventanaPersona.cerrar();
 		}
 		
+		private void editarPersona(ActionEvent e) {
+			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
+			for (int fila : filasSeleccionadas)
+			{
+//				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
+//				System.out.println(this.personasEnTabla.get(fila).);
+				System.out.println(String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0)));	
+				String nombre = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0));
+//				String tel = ventanaPersona.getTxtTelefono().getText();
+//				String email = ventanaPersona.getTxtEmail().getText();
+//				String cumple = ventanaPersona.getTxtCumple().getText();
+//				String calle = ventanaPersona.getTxtCalle().getText();
+//				String altura = ventanaPersona.getTxtAltura().getText();
+//				String piso = ventanaPersona.getTxtPiso().getText();
+//				String depto = ventanaPersona.getTxtDepto().getText();
+				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "");
+				this.agenda.editarPersona(nuevaPersona);
+				this.refrescarTabla();
+			}
+			
+			
+		}
+		
 		private void guardarLocalidad(ActionEvent h) {
 			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
@@ -157,9 +181,7 @@ public class Controlador implements ActionListener
 			this.refrescarTablaTiposContacto();
 		}
 
-		private void editarPersona(ActionEvent e) {
-			
-		}
+
 		
 		public void inicializar()
 		{
