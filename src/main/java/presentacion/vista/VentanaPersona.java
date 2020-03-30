@@ -23,12 +23,11 @@ public class VentanaPersona extends JFrame
 	private JTextField txtAltura;
 	private JTextField txtPiso;
 	private JTextField txtDepto;
-	private JComboBox comboBoxLocalidad;
-	private JComboBox comboBoxTipoContacto;
+	private JComboBox<String> comboBoxLocalidad;
+	private JComboBox<String> comboBoxTipoContacto;
 	private JButton btnAgregarPersona;
 	private static VentanaPersona INSTANCE;
-//	private List<LocalidadDTO> localidades;
-//	private static Localidad localidad;
+
 	
 	public static VentanaPersona getInstance()
 	{
@@ -46,10 +45,12 @@ public class VentanaPersona extends JFrame
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 490, 650);
 		
 		JPanel panel = new JPanel();
+//		panel.setBounds(100, 100, 490, 450);
 		getContentPane().add(panel, BorderLayout.CENTER);
+		
 		panel.setLayout(null);
 		
 		JLabel lblNombreYApellido = new JLabel("Nombre y apellido");
@@ -141,48 +142,35 @@ public class VentanaPersona extends JFrame
         panel.add(comboBoxTipoContacto);
 		
 		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.setBounds(317, 442, 117, 29);
+		btnAgregarPersona.setBounds(150, 450, 117, 29);
 		panel.add(btnAgregarPersona);
 		
 		this.setVisible(false);
 	}
 
-	@SuppressWarnings("unchecked")
 	public void rellenarListaLocalidades(List<LocalidadDTO> localidades) {
-		
+		this.comboBoxLocalidad.removeAllItems();
 		for (LocalidadDTO valor : localidades)
         {
         	this.comboBoxLocalidad.addItem(valor.getNombre());
         }
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void rellenarListaTiposContacto(List<TipoContactoDTO> tiposContacto) {
-		
+		this.comboBoxTipoContacto.removeAllItems();
 		for (TipoContactoDTO valor : tiposContacto)
         {
         	this.comboBoxTipoContacto.addItem(valor.getNombre());
         }
 	}
 	
-//	private List<LocalidadDTO> rellenarListaLocalidades()
-//	{
-//		String consulta = "select * from localidades";
-//		return null;
-////		return this.localidad.obtenerLocalidades();
-//	}
-	
-	public JComboBox getComboBoxLocalidad() {
-		return comboBoxLocalidad;
+	public JComboBox<String> getComboBoxLocalidad() {
+		return this.comboBoxLocalidad;
 	}
 
-	public void setComboBoxLocalidad(JComboBox comboBoxLocalidad) {
+	public void setComboBoxLocalidad(JComboBox<String> comboBoxLocalidad) {
 		this.comboBoxLocalidad = comboBoxLocalidad;
 	}
-
-//	public void setLocalidades(List<LocalidadDTO> localidades) {
-//		this.localidades = localidades;
-//	}
 
 	public void mostrarVentana()
 	{

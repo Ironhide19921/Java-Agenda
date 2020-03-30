@@ -50,10 +50,9 @@ public class Controlador implements ActionListener
 			this.vistaLocalidad = VistaLocalidad.getInstance();
 			this.vistaLocalidad.getBtnAgregarLocalidad().addActionListener(v->mostrarVentanaLocalidad(v));
 			this.vistaLocalidad.getBtnBorrarLocalidad().addActionListener(b->borrarLocalidad(b));
-//			this.vistaLocalidad.addWindowListener(g->entro(g));
+			
 			this.ventanaLocalidad = VentanaLocalidad.getInstance();
 			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(h->guardarLocalidad(h));
-//			this.ventanaLocalidad.addWindowStateListener(c->refrescarListaLocalidades(c));
 			
 			this.vistaTipoContacto = VistaTipoContacto.getInstance();
 			this.vistaTipoContacto.getBtnAgregarTipoContacto().addActionListener(w->mostrarVentanaTipoContacto(w));
@@ -67,14 +66,9 @@ public class Controlador implements ActionListener
 			this.tipoContacto = tipoContacto;
 		}
 
-		
-//		private Object refrescarListaLocalidades(WindowEvent c) {
-//			System.out.println("hola");
-////			this.ventanaLocalidad.windowClosed()
-//			return null;
-//		}
-
 		private void ventanaAgregarPersona(ActionEvent a) {
+			this.consultarLocalidades();
+			this.consultarTiposContacto();
 			this.ventanaPersona.mostrarVentana();
 		}
 
@@ -205,11 +199,6 @@ public class Controlador implements ActionListener
 		{
 			this.ventanaPersona.rellenarListaTiposContacto(tipoContacto.obtenerTiposContacto());	
 		}
-		
-
-			//this.vista.llenarTabla(this.localidadesEnTabla);
-				
-
 
 		@Override
 		public void actionPerformed(ActionEvent e) { }

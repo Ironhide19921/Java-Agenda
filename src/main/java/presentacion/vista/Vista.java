@@ -41,28 +41,27 @@ public class Vista
 	{
 		frame = new JFrame();
 
-		frame.setBounds(100, 100, 510, 300);
-		frame.setBounds(100, 100, 755, 300);
+		frame.setBounds(100, 100, 520, 350);
+		frame.setBounds(100, 100, 775, 350);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 
-		panel.setBounds(0, 0, 735, 262);
-
+		panel.setBounds(0, 0, 740, 262);
 
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 725, 182);
+		spPersonas.setBounds(10, 11, 730, 182);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
 		tablaPersonas = new JTable(modelPersonas);
 		
-		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(103);
+		tablaPersonas.getColumnModel().getColumn(0).setPreferredWidth(170);
 		tablaPersonas.getColumnModel().getColumn(0).setResizable(false);
 		tablaPersonas.getColumnModel().getColumn(1).setPreferredWidth(100);
 		tablaPersonas.getColumnModel().getColumn(1).setResizable(false);
@@ -82,27 +81,27 @@ public class Vista
 		spPersonas.setViewportView(tablaPersonas);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(10, 228, 89, 23);
+		btnAgregar.setBounds(10, 228, 118, 23);
 		panel.add(btnAgregar);
 		
 		btnEditar = new JButton("Editar");
-		btnEditar.setBounds(109, 228, 89, 23);
+		btnEditar.setBounds(132, 228, 118, 23);
 		panel.add(btnEditar);
 		
 		btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(208, 228, 89, 23);
+		btnBorrar.setBounds(254, 228, 118, 23);
 		panel.add(btnBorrar);
 		
 		btnReporte = new JButton("Reporte");
-		btnReporte.setBounds(307, 228, 89, 23);
+		btnReporte.setBounds(376, 228, 118, 23);
 		panel.add(btnReporte);
 		
 		btnAbmLocalidades = new JButton("Localidades");
-		btnAbmLocalidades.setBounds(407, 228, 103, 23);
+		btnAbmLocalidades.setBounds(498, 228, 118, 23);
 		panel.add(btnAbmLocalidades);
 		
 		btnAbmTiposContacto = new JButton("TiposContacto");
-		btnAbmTiposContacto.setBounds(520, 228, 96, 23);
+		btnAbmTiposContacto.setBounds(620, 228, 118, 23);
 		panel.add(btnAbmTiposContacto);
 	}
 	

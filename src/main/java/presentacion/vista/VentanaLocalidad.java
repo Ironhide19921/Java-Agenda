@@ -15,7 +15,7 @@ public class VentanaLocalidad extends JFrame
 
 	private JButton btnAgregarLocalidad;
 	private static VentanaLocalidad INSTANCE;
-	
+
 	public static VentanaLocalidad getInstance()
 	{
 		if(INSTANCE == null)
@@ -72,13 +72,12 @@ public class VentanaLocalidad extends JFrame
 	{
 		return btnAgregarLocalidad;
 	}
-
+	
 	public void cerrar()
 	{
 		this.txtNombre.setText("");
-		System.out.println(this.isShowing());
 		this.dispose();
-		System.out.println(this.isShowing());
+
 	}
 	
 
