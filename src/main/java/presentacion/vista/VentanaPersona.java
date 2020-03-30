@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import dto.LocalidadDTO;
+import dto.TipoContactoDTO;
 
 public class VentanaPersona extends JFrame 
 {
@@ -23,6 +24,7 @@ public class VentanaPersona extends JFrame
 	private JTextField txtPiso;
 	private JTextField txtDepto;
 	private JComboBox comboBoxLocalidad;
+	private JComboBox comboBoxTipoContacto;
 	private JButton btnAgregarPersona;
 	private static VentanaPersona INSTANCE;
 //	private List<LocalidadDTO> localidades;
@@ -42,7 +44,6 @@ public class VentanaPersona extends JFrame
 	private VentanaPersona() 
 	{
 		super();
-//		this.localidad = localidad;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -86,6 +87,10 @@ public class VentanaPersona extends JFrame
         JLabel lblLocalidad = new JLabel("Localidad");
         lblLocalidad.setBounds(30, 354, 61, 16);
         panel.add(lblLocalidad);
+        
+        JLabel lblTipoContacto = new JLabel("TipoContacto");
+        lblTipoContacto.setBounds(30, 400, 61, 16);
+        panel.add(lblTipoContacto);
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(188, 36, 130, 26);
@@ -127,16 +132,13 @@ public class VentanaPersona extends JFrame
         panel.add(txtDepto);
         txtDepto.setColumns(10);
         
-//        JComboBox<LocalidadDTO> comboBoxLocalidad = new JComboBox<LocalidadDTO>();
         comboBoxLocalidad = new JComboBox<String>();
         comboBoxLocalidad.setBounds(188, 350, 130, 27);
-//        List<LocalidadDTO> valores = rellenarListaLocalidades();
-        
-        
-//        comboBoxLocalidad.addItem("Uno");
-//        comboBoxLocalidad.addItem("Dos");
-//        comboBoxLocalidad.addItem("Tres");
         panel.add(comboBoxLocalidad);
+        
+        comboBoxTipoContacto = new JComboBox<String>();
+        comboBoxTipoContacto.setBounds(188, 400, 130, 27);
+        panel.add(comboBoxTipoContacto);
 		
 		btnAgregarPersona = new JButton("Agregar");
 		btnAgregarPersona.setBounds(317, 442, 117, 29);
@@ -151,6 +153,15 @@ public class VentanaPersona extends JFrame
 		for (LocalidadDTO valor : localidades)
         {
         	this.comboBoxLocalidad.addItem(valor.getNombre());
+        }
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void rellenarListaTiposContacto(List<TipoContactoDTO> tiposContacto) {
+		
+		for (TipoContactoDTO valor : tiposContacto)
+        {
+        	this.comboBoxTipoContacto.addItem(valor.getNombre());
         }
 	}
 	

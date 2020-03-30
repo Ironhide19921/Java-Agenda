@@ -4,9 +4,7 @@ import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -15,7 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 
 public class VistaLocalidad extends JFrame 
 {
@@ -124,12 +121,12 @@ public class VistaLocalidad extends JFrame
 		return btnBorrarLocalidad;
 	}
 	
-	public void llenarTabla(List<LocalidadDTO> localidadesEnTabla) {
+	public void llenarTabla(List<LocalidadDTO> LocalidadesEnTabla) {
 		this.getModelLocalidades().setRowCount(0); //Para vaciar la tabla
 		this.getModelLocalidades().setColumnCount(0);
 		this.getModelLocalidades().setColumnIdentifiers(this.getNombreColumnas());
 
-		for (LocalidadDTO p : localidadesEnTabla)
+		for (LocalidadDTO p : LocalidadesEnTabla)
 		{
 			String nombre = p.getNombre();
 			//String tel = p.getTelefono();

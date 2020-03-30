@@ -3,7 +3,6 @@ package presentacion.vista;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -25,6 +24,7 @@ public class Vista
 	private JButton btnBorrar;
 	private JButton btnReporte;
 	private JButton btnAbmLocalidades;
+	private JButton btnAbmTiposContacto;
 	private DefaultTableModel modelPersonas;
 	private  String[] nombreColumnas = {"Nombre y apellido","Telefono"};
 
@@ -80,6 +80,10 @@ public class Vista
 		btnAbmLocalidades = new JButton("Localidades");
 		btnAbmLocalidades.setBounds(407, 228, 96, 23);
 		panel.add(btnAbmLocalidades);
+		
+		btnAbmTiposContacto = new JButton("TiposContacto");
+		btnAbmTiposContacto.setBounds(507, 228, 96, 23);
+		panel.add(btnAbmTiposContacto);
 	}
 	
 	public void show()
@@ -120,6 +124,11 @@ public class Vista
 	public JButton getBtnAbmLocalidad() 
 	{
 		return btnAbmLocalidades;
+	}
+	
+	public JButton getBtnAbmTipoContacto() 
+	{
+		return btnAbmTiposContacto;
 	}
 	
 	public DefaultTableModel getModelPersonas() 
