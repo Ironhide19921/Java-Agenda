@@ -131,12 +131,8 @@ public class Controlador implements ActionListener
 			int[] filasSeleccionadas = this.vistaLocalidad.getTablaLocalidades().getSelectedRows();
 			for (int fila : filasSeleccionadas)
 			{
-				System.out.println(String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila,0)));
 				int id = Integer.parseInt(String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila, 0)));
 				String nombre = String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila,1));
-
-				System.out.println(id);
-				System.out.println(nombre);
 				LocalidadDTO nuevaLocalidad = new LocalidadDTO(id, nombre);
 				this.localidad.editarLocalidad(nuevaLocalidad);
 				this.refrescarTablaLocalidades();
@@ -147,12 +143,8 @@ public class Controlador implements ActionListener
 			int[] filasSeleccionadas = this.vistaTipoContacto.getTablaTiposContacto().getSelectedRows();
 			for (int fila : filasSeleccionadas)
 			{
-				System.out.println(String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila,0)));
 				int id = Integer.parseInt(String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila, 0)));
 				String nombre = String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila,1));
-
-				System.out.println(id);
-				System.out.println(nombre);
 				TipoContactoDTO nuevaTipoContacto= new TipoContactoDTO(id, nombre);
 				this.tipoContacto.editarTipoContacto(nuevaTipoContacto);
 				this.refrescarTablaTiposContacto();
