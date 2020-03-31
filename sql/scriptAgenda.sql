@@ -23,9 +23,5 @@ CREATE TABLE `personas`
   `Altura` varchar(25) NOT NULL,
   `Piso` varchar(10) NULL,
   `Depto` varchar(10) NULL,
-  `localidad_id` int(11) NOT NULL,
-  `tipo_contacto_id` int(11) NOT NULL,
-  PRIMARY KEY (`idPersona`),
-  CONSTRAINT FOREIGN KEY fk_localidad (localidad_id) REFERENCES localidades (idLocalidad),
-  CONSTRAINT FOREIGN KEY fk_tipo_contacto (tipo_contacto_id) REFERENCES tiposContacto (idTipoContacto)
-);
+  PRIMARY KEY (`idPersona`)
+ );

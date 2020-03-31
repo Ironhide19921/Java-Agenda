@@ -15,7 +15,7 @@ import dto.TipoContactoDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto, localidad_id, tipo_contacto_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final String update = "UPDATE personas SET nombre = ? WHERE idPersona = ?"/*, telefono=?, email=?, cumpleanios=?, calle=?,"
@@ -38,10 +38,6 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(7, persona.getAltura());
 			statement.setString(8, persona.getPiso());
 			statement.setString(9, persona.getDepto());
-			statement.setInt(10, persona.getLocalidad().getIdLocalidad());
-			System.out.println(persona.getLocalidad().getIdLocalidad());
-			statement.setInt(11, persona.getTipoContacto().getIdTipoContacto());
-			System.out.println(persona.getTipoContacto().getIdTipoContacto());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -153,9 +149,7 @@ public class PersonaDAOSQL implements PersonaDAO
 		String altura = resultSet.getString("ALtura");
 		String piso = resultSet.getString("Piso");
 		String depto = resultSet.getString("Depto");
-		//LocalidadDTO localidad = resultSet.getString("localidad_id");
-		//TipoContactoDTO tipoContacto = resultSet.getObject("tipo_contacto_id");
-		return new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, null, null);
+		return new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto);
 	}
 
 	
