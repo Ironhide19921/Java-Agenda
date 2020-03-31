@@ -12,4 +12,6 @@ public interface TipoContactoDAO
 	public boolean delete(TipoContactoDTO tipoContacto_a_eliminar);
 	
 	public List<TipoContactoDTO> readAll();
+	
+	public void update(TipoContactoDTO tipoContacto);
 }

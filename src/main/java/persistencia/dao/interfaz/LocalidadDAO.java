@@ -3,6 +3,7 @@ package persistencia.dao.interfaz;
 import java.util.List;
 
 import dto.LocalidadDTO;
+import dto.PersonaDTO;
 
 public interface LocalidadDAO 
 {
@@ -12,4 +13,6 @@ public interface LocalidadDAO
 	public boolean delete(LocalidadDTO localidad_a_eliminar);
 	
 	public List<LocalidadDTO> readAll();
+	
+	public void update(LocalidadDTO localidad);
 }

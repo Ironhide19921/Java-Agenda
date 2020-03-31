@@ -10,13 +10,15 @@ import java.util.List;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 import dto.LocalidadDTO;
+import dto.PersonaDTO;
 
 public class LocalidadDAOSQL implements LocalidadDAO
 {
 	private static final String insert = "INSERT INTO localidades(idLocalidad, nombre) VALUES(?, ?)";
 	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
-		
+	private static final String update = "UPDATE localidades SET nombre = ? WHERE idLocalidad = ?";
+			
 	public boolean insert(LocalidadDTO localidad)
 	{
 		PreparedStatement statement;
@@ -45,6 +47,31 @@ public class LocalidadDAOSQL implements LocalidadDAO
 		}
 		
 		return isInsertExitoso;
+	}
+	
+	@Override
+	public void update(LocalidadDTO localidad) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try{
+			statement = conexion.prepareStatement(update);
+			statement.setString(1, localidad.getNombre());
+			statement.setInt(2, localidad.getIdLocalidad());
+			System.out.println(statement.executeUpdate() );		
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			try {
+				conexion.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	public boolean delete(LocalidadDTO localidad_a_eliminar)

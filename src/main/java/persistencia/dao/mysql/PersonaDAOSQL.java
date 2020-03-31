@@ -63,15 +63,15 @@ public class PersonaDAOSQL implements PersonaDAO
 		try{
 			statement = conexion.prepareStatement(update);
 			statement.setString(1, persona.getNombre());
-			/*statement.setString(3, persona.getTelefono());
+			statement.setString(3, persona.getTelefono());
 			statement.setString(4, persona.getEmail());
 			statement.setString(5, persona.getCumpleanios());
 			statement.setString(6, persona.getCalle());
 			statement.setString(7, persona.getAltura());
 			statement.setString(8, persona.getPiso());
-			statement.setString(9, persona.getDepto());*/
+			statement.setString(9, persona.getDepto());
 			//statement.setString(2, Integer.toString(persona.getIdPersona()));
-			statement.setInt(2, persona.getIdPersona());
+			statement.setInt(10, persona.getIdPersona());
 			System.out.println(statement.executeUpdate() );		
 			if(statement.executeUpdate() > 0)
 			{

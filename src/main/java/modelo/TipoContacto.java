@@ -1,9 +1,7 @@
 package modelo;
 
 import java.util.List;
-
 import dto.TipoContactoDTO;
-//import dto.PersonaDTO;
 import persistencia.dao.interfaz.DAOAbstractFactory;
 import persistencia.dao.interfaz.TipoContactoDAO;
 
@@ -30,6 +28,10 @@ public class TipoContacto
 	public List<TipoContactoDTO> obtenerTiposContacto()
 	{
 		return this.tipoContacto.readAll();		
+	}
+	
+	public void editarTipoContacto(TipoContactoDTO tipoContacto) {
+		this.tipoContacto.update(tipoContacto);
 	}
 	
 }

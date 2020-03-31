@@ -50,6 +50,7 @@ public class Controlador implements ActionListener
 			
 			this.vistaLocalidad = VistaLocalidad.getInstance();
 			this.vistaLocalidad.getBtnAgregarLocalidad().addActionListener(v->mostrarVentanaLocalidad(v));
+			this.vistaLocalidad.getBtnEditarLocalidad().addActionListener(e->editarLocalidad(e));
 			this.vistaLocalidad.getBtnBorrarLocalidad().addActionListener(b->borrarLocalidad(b));
 			
 			this.ventanaLocalidad = VentanaLocalidad.getInstance();
@@ -57,6 +58,7 @@ public class Controlador implements ActionListener
 			
 			this.vistaTipoContacto = VistaTipoContacto.getInstance();
 			this.vistaTipoContacto.getBtnAgregarTipoContacto().addActionListener(w->mostrarVentanaTipoContacto(w));
+			this.vistaTipoContacto.getBtnEditarTipoContacto().addActionListener(e->editarTipoContacto(e));
 			this.vistaTipoContacto.getBtnBorrarTipoContacto().addActionListener(z->borrarTipoContacto(z));
 			
 			this.ventanaTipoContacto = VentanaTipoContacto.getInstance();
@@ -120,11 +122,41 @@ public class Controlador implements ActionListener
 //				String piso = ventanaPersona.getTxtPiso().getText();
 //				String depto = ventanaPersona.getTxtDepto().getText();
 				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "");
-				this.agenda.editarPersona(nuevaPersona);
+//				this.agenda.editarPersona(nuevaPersona);
 				this.refrescarTabla();
 			}
-			
-			
+		}
+		
+		private void editarLocalidad(ActionEvent e) {
+			int[] filasSeleccionadas = this.vistaLocalidad.getTablaLocalidades().getSelectedRows();
+			for (int fila : filasSeleccionadas)
+			{
+				System.out.println(String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila,0)));
+				int id = Integer.parseInt(String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila, 0)));
+				String nombre = String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila,1));
+
+				System.out.println(id);
+				System.out.println(nombre);
+				LocalidadDTO nuevaLocalidad = new LocalidadDTO(id, nombre);
+				this.localidad.editarLocalidad(nuevaLocalidad);
+				this.refrescarTablaLocalidades();
+			}
+		}
+		
+		private void editarTipoContacto(ActionEvent e) {
+			int[] filasSeleccionadas = this.vistaTipoContacto.getTablaTiposContacto().getSelectedRows();
+			for (int fila : filasSeleccionadas)
+			{
+				System.out.println(String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila,0)));
+				int id = Integer.parseInt(String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila, 0)));
+				String nombre = String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila,1));
+
+				System.out.println(id);
+				System.out.println(nombre);
+				TipoContactoDTO nuevaTipoContacto= new TipoContactoDTO(id, nombre);
+				this.tipoContacto.editarTipoContacto(nuevaTipoContacto);
+				this.refrescarTablaTiposContacto();
+			}
 		}
 		
 		private void guardarLocalidad(ActionEvent h) {

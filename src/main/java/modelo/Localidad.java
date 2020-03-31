@@ -3,6 +3,7 @@ package modelo;
 import java.util.List;
 
 import dto.LocalidadDTO;
+import dto.PersonaDTO;
 //import dto.PersonaDTO;
 import persistencia.dao.interfaz.DAOAbstractFactory;
 import persistencia.dao.interfaz.LocalidadDAO;
@@ -32,4 +33,7 @@ public class Localidad
 		return this.localidad.readAll();		
 	}
 	
+	public void editarLocalidad(LocalidadDTO localidad) {
+		this.localidad.update(localidad);
+	}
 }

@@ -26,7 +26,7 @@ public class VistaLocalidad extends JFrame
 	private static VistaLocalidad INSTANCE;
 	private JTable tablaLocalidades;
 	private DefaultTableModel modelLocalidades;
-	private String[] nombreColumnas = {"Nombre"};
+	private String[] nombreColumnas = {"id","Nombre"};
 	
 	public static VistaLocalidad getInstance()
 	{
@@ -60,6 +60,8 @@ public class VistaLocalidad extends JFrame
 		tablaLocalidades = new JTable(modelLocalidades);
 		
 		tablaLocalidades.getColumnModel().getColumn(0).setPreferredWidth(103);
+		tablaLocalidades.getColumnModel().getColumn(0).setResizable(false);
+		tablaLocalidades.getColumnModel().getColumn(0).setPreferredWidth(20);
 		tablaLocalidades.getColumnModel().getColumn(0).setResizable(false);
 		
 		spLocalidades.setViewportView(tablaLocalidades);   
@@ -121,6 +123,10 @@ public class VistaLocalidad extends JFrame
 		return btnBorrarLocalidad;
 	}
 	
+	public JButton getBtnEditarLocalidad() {
+		return btnEditarLocalidad;
+	}
+	
 	public void llenarTabla(List<LocalidadDTO> LocalidadesEnTabla) {
 		this.getModelLocalidades().setRowCount(0); //Para vaciar la tabla
 		this.getModelLocalidades().setColumnCount(0);
@@ -128,9 +134,10 @@ public class VistaLocalidad extends JFrame
 
 		for (LocalidadDTO p : LocalidadesEnTabla)
 		{
+			int id = p.getIdLocalidad();
 			String nombre = p.getNombre();
 			//String tel = p.getTelefono();
-			Object[] fila = {nombre};
+			Object[] fila = {id, nombre};
 			this.getModelLocalidades().addRow(fila);
 		}
 		
@@ -141,6 +148,8 @@ public class VistaLocalidad extends JFrame
 		this.txtNombre.setText("");
 		this.dispose();
 	}
+	
+
 	
 }
 

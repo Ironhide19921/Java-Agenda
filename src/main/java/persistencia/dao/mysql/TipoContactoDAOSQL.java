@@ -16,7 +16,8 @@ public class TipoContactoDAOSQL implements TipoContactoDAO
 	private static final String insert = "INSERT INTO tiposContacto(idTipoContacto, nombre) VALUES(?, ?)";
 	private static final String delete = "DELETE FROM tiposContacto WHERE idTipoContacto = ?";
 	private static final String readall = "SELECT * FROM tiposContacto";
-		
+	private static final String update = "UPDATE tiposContacto SET nombre = ? WHERE idTipoContacto = ?";
+	
 	public boolean insert(TipoContactoDTO tipoContacto)
 	{
 		PreparedStatement statement;
@@ -45,6 +46,31 @@ public class TipoContactoDAOSQL implements TipoContactoDAO
 		}
 		
 		return isInsertExitoso;
+	}
+	
+	@Override
+	public void update(TipoContactoDTO tipoContacto) {
+		PreparedStatement statement;
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try{
+			statement = conexion.prepareStatement(update);
+			statement.setString(1, tipoContacto.getNombre());
+			statement.setInt(2, tipoContacto.getIdTipoContacto());
+			System.out.println(statement.executeUpdate() );		
+			if(statement.executeUpdate() > 0)
+			{
+				conexion.commit();
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			try {
+				conexion.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	public boolean delete(TipoContactoDTO tipoContacto_a_eliminar)

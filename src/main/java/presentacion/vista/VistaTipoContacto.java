@@ -25,7 +25,7 @@ public class VistaTipoContacto extends JFrame
 	private static VistaTipoContacto INSTANCE;
 	private JTable tablaTiposContacto;
 	private DefaultTableModel modelTiposContacto;
-	private String[] nombreColumnas = {"Nombre"};
+	private String[] nombreColumnas = {"id","Nombre"};
 	
 	public static VistaTipoContacto getInstance()
 	{
@@ -120,6 +120,10 @@ public class VistaTipoContacto extends JFrame
 		return btnBorrarTipoContacto;
 	}
 	
+	public JButton getBtnEditarTipoContacto() {
+		return btnEditarTipoContacto;
+	}
+	
 	public void llenarTabla(List<TipoContactoDTO> tiposContactoEnTabla) {
 		this.getModelTiposContacto().setRowCount(0); //Para vaciar la tabla
 		this.getModelTiposContacto().setColumnCount(0);
@@ -127,9 +131,10 @@ public class VistaTipoContacto extends JFrame
 
 		for (TipoContactoDTO p : tiposContactoEnTabla)
 		{
+			int id = p.getIdTipoContacto();
 			String nombre = p.getNombre();
 			//String tel = p.getTelefono();
-			Object[] fila = {nombre};
+			Object[] fila = {id, nombre};
 			this.getModelTiposContacto().addRow(fila);
 		}
 		
