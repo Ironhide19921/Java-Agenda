@@ -3,7 +3,6 @@ package persistencia.dao.interfaz;
 import java.util.List;
 
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 
 public interface LocalidadDAO 
 {

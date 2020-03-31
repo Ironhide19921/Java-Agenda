@@ -10,7 +10,6 @@ import java.util.List;
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.LocalidadDAO;
 import dto.LocalidadDTO;
-import dto.PersonaDTO;
 
 public class LocalidadDAOSQL implements LocalidadDAO
 {

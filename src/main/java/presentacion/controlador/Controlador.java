@@ -2,8 +2,6 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.awt.event.WindowEvent;
-//import java.awt.event.WindowListener;
 import java.util.List;
 import modelo.Agenda;
 import modelo.Localidad;
@@ -43,7 +41,6 @@ public class Controlador implements ActionListener
 			this.vista.getBtnReporte().addActionListener(r->mostrarReporte(r));
 			this.vista.getBtnAbmLocalidad().addActionListener(l->mostrarVistaLocalidad(l));
 			this.vista.getBtnAbmTipoContacto().addActionListener(i->mostrarVistaTipoContacto(i));
-			this.vista.getBtnEditar().addActionListener(e->editarPersona(e));
 			
 			this.ventanaPersona = VentanaPersona.getInstance();
 			this.ventanaPersona.getBtnAgregarPersona().addActionListener(p->guardarPersona(p));
@@ -100,7 +97,10 @@ public class Controlador implements ActionListener
 			String altura = ventanaPersona.getTxtAltura().getText();
 			String piso = ventanaPersona.getTxtPiso().getText();
 			String depto = ventanaPersona.getTxtDepto().getText();
-			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto);
+			String loc = String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem());
+			String tipo = String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem());
+
+			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo);
 			this.agenda.agregarPersona(nuevaPersona);
 			this.refrescarTabla();
 			this.ventanaPersona.cerrar();
@@ -110,19 +110,19 @@ public class Controlador implements ActionListener
 			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 			for (int fila : filasSeleccionadas)
 			{
-//				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-//				System.out.println(this.personasEnTabla.get(fila).);
-				System.out.println(String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0)));	
-				String nombre = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0));
-//				String tel = ventanaPersona.getTxtTelefono().getText();
-//				String email = ventanaPersona.getTxtEmail().getText();
-//				String cumple = ventanaPersona.getTxtCumple().getText();
-//				String calle = ventanaPersona.getTxtCalle().getText();
-//				String altura = ventanaPersona.getTxtAltura().getText();
-//				String piso = ventanaPersona.getTxtPiso().getText();
-//				String depto = ventanaPersona.getTxtDepto().getText();
-				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "");
-//				this.agenda.editarPersona(nuevaPersona);
+				int id = Integer.parseInt(String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0)));
+				String nombre = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,1));
+				String tel = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,2));
+				String email = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,3));
+				String cumple = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,4));
+				String calle = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,5));
+				String altura = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,6));
+				String piso = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,7));
+				String depto = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,8));
+				String loc = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,9));
+				String tipo = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,10));
+				PersonaDTO nuevaPersona = new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo);
+				this.agenda.editarPersona(nuevaPersona);
 				this.refrescarTabla();
 			}
 		}
@@ -138,7 +138,6 @@ public class Controlador implements ActionListener
 				this.refrescarTablaLocalidades();
 			}
 		}
-		
 		private void editarTipoContacto(ActionEvent e) {
 			int[] filasSeleccionadas = this.vistaTipoContacto.getTablaTiposContacto().getSelectedRows();
 			for (int fila : filasSeleccionadas)

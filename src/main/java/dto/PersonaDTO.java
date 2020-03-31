@@ -11,9 +11,11 @@ public class PersonaDTO
 	private String altura;
 	private String piso;
 	private String depto;
+	private String loc;
+	private String tipo;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono, String email, String cumpleanios, 
-			String calle, String altura, String piso, String depto) {
+			String calle, String altura, String piso, String depto, String loc, String tipo) {
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -23,6 +25,24 @@ public class PersonaDTO
 		this.altura = altura;
 		this.piso = piso;
 		this.depto = depto;
+		this.loc = loc;
+		this.tipo = tipo;
+	}
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public int getIdPersona() {
@@ -96,6 +116,5 @@ public class PersonaDTO
 	public void setDepto(String depto) {
 		this.depto = depto;
 	}
-	
-	
+		
 }
