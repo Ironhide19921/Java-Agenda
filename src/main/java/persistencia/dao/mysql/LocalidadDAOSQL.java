@@ -17,7 +17,7 @@ public class LocalidadDAOSQL implements LocalidadDAO
 	private static final String delete = "DELETE FROM localidades WHERE idLocalidad = ?";
 	private static final String readall = "SELECT * FROM localidades";
 	private static final String update = "UPDATE localidades SET nombre = ? WHERE idLocalidad = ?";
-			
+
 	public boolean insert(LocalidadDTO localidad)
 	{
 		PreparedStatement statement;

@@ -149,7 +149,7 @@ public class Controlador implements ActionListener
 				this.refrescarTablaTiposContacto();
 			}
 		}
-		
+				
 		private void guardarLocalidad(ActionEvent h) {
 			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
