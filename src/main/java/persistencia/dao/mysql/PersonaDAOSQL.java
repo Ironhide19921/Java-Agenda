@@ -9,17 +9,15 @@ import java.util.List;
 
 import persistencia.conexion.Conexion;
 import persistencia.dao.interfaz.PersonaDAO;
-import dto.LocalidadDTO;
 import dto.PersonaDTO;
-import dto.TipoContactoDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
 	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
-	private static final String update = "UPDATE personas SET nombre = ? WHERE idPersona = ?"/*, telefono=?, email=?, cumpleanios=?, calle=?,"
-			+ " altura=?, piso=?, depto=?*/;
+	private static final String update = "UPDATE personas SET nombre = ?, telefono=?, email=?, cumpleanios=?, calle=?,"
+			+ " altura=?, piso=?, depto=? WHERE idPersona = ?";
 		
 	public boolean insert(PersonaDTO persona)
 	{
@@ -61,24 +59,23 @@ public class PersonaDAOSQL implements PersonaDAO
 	public void update(PersonaDTO persona) {
 		PreparedStatement statement;
 		Connection conexion = Conexion.getConexion().getSQLConexion();
-		boolean isUpdateExitoso = false;
+		//boolean isUpdateExitoso = false;
 		try{
 			statement = conexion.prepareStatement(update);
 			statement.setString(1, persona.getNombre());
-			/*statement.setString(3, persona.getTelefono());
-			statement.setString(4, persona.getEmail());
-			statement.setString(5, persona.getCumpleanios());
-			statement.setString(6, persona.getCalle());
-			statement.setString(7, persona.getAltura());
-			statement.setString(8, persona.getPiso());
-			statement.setString(9, persona.getDepto());*/
-			//statement.setString(2, Integer.toString(persona.getIdPersona()));
-			statement.setInt(2, persona.getIdPersona());
-			System.out.println(statement.executeUpdate() );		
+			statement.setString(2, persona.getTelefono());
+			statement.setString(3, persona.getEmail());
+			statement.setString(4, persona.getCumpleanios());
+			statement.setString(5, persona.getCalle());
+			statement.setString(6, persona.getAltura());
+			statement.setString(7, persona.getPiso());
+			statement.setString(8, persona.getDepto());
+			statement.setInt(9, persona.getIdPersona());
+			//System.out.println(statement.executeUpdate());		
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
-				isUpdateExitoso = true;
+				//isUpdateExitoso = true;
 			}
 		} 
 		catch (SQLException e) 

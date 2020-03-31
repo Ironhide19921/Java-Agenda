@@ -2,7 +2,6 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 //import java.awt.event.WindowEvent;
 //import java.awt.event.WindowListener;
 import java.util.List;
@@ -110,23 +109,19 @@ public class Controlador implements ActionListener
 			int[] filasSeleccionadas = this.vista.getTablaPersonas().getSelectedRows();
 			for (int fila : filasSeleccionadas)
 			{
-//				this.agenda.borrarPersona(this.personasEnTabla.get(fila));
-//				System.out.println(this.personasEnTabla.get(fila).);
-				System.out.println(String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0)));	
 				String nombre = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,0));
-//				String tel = ventanaPersona.getTxtTelefono().getText();
-//				String email = ventanaPersona.getTxtEmail().getText();
-//				String cumple = ventanaPersona.getTxtCumple().getText();
-//				String calle = ventanaPersona.getTxtCalle().getText();
-//				String altura = ventanaPersona.getTxtAltura().getText();
-//				String piso = ventanaPersona.getTxtPiso().getText();
-//				String depto = ventanaPersona.getTxtDepto().getText();
-				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, "", "", "", "", "", "", "");
+				String tel = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,1));
+				String email = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,2));
+				String cumple = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,3));
+				String calle = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,4));
+				String altura = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,5));
+				String piso = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,6));
+				String depto = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,7));
+				PersonaDTO nuevaPersona = new PersonaDTO(fila+1, nombre, tel, email, cumple, calle, altura, piso, depto);
 				this.agenda.editarPersona(nuevaPersona);
 				this.refrescarTabla();
 			}
-			
-			
+
 		}
 		
 		private void guardarLocalidad(ActionEvent h) {
