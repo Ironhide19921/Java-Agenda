@@ -28,7 +28,6 @@ public class TipoContactoDAOSQL implements TipoContactoDAO
 			statement = conexion.prepareStatement(insert);
 			statement.setInt(1, tipoContacto.getIdTipoContacto());
 			statement.setString(2, tipoContacto.getNombre());
-			//statement.setString(3, persona.getTelefono());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -55,8 +54,7 @@ public class TipoContactoDAOSQL implements TipoContactoDAO
 		try{
 			statement = conexion.prepareStatement(update);
 			statement.setString(1, tipoContacto.getNombre());
-			statement.setInt(2, tipoContacto.getIdTipoContacto());
-			System.out.println(statement.executeUpdate() );		
+			statement.setInt(2, tipoContacto.getIdTipoContacto());		
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
