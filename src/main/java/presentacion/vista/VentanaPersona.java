@@ -25,6 +25,8 @@ public class VentanaPersona extends JFrame
 	private JTextField txtDepto;
 	private JComboBox<String> comboBoxLocalidad;
 	private JComboBox<String> comboBoxTipoContacto;
+	private JTextField txtCodPostal;
+	private JTextField txtEquipoPref;
 	private JButton btnAgregarPersona;
 	private static VentanaPersona INSTANCE;
 
@@ -45,7 +47,7 @@ public class VentanaPersona extends JFrame
 		super();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 490, 650);
+		setBounds(150, 40, 490, 650);
 		
 		JPanel panel = new JPanel();
 //		panel.setBounds(100, 100, 490, 450);
@@ -92,7 +94,15 @@ public class VentanaPersona extends JFrame
         JLabel lblTipoContacto = new JLabel("TipoContacto");
         lblTipoContacto.setBounds(30, 400, 75, 16);
         panel.add(lblTipoContacto);
+        
+        JLabel lblCodigoPostal = new JLabel("Codigo Postal");
+        lblCodigoPostal.setBounds(30, 450, 75, 16);
+        panel.add(lblCodigoPostal);
 		
+        JLabel lblEquipoPref = new JLabel("Equipo Preferido");
+        lblEquipoPref.setBounds(30, 500, 75, 16);
+        panel.add(lblEquipoPref);
+        
 		txtNombre = new JTextField();
 		txtNombre.setBounds(188, 36, 130, 26);
 		panel.add(txtNombre);
@@ -140,9 +150,19 @@ public class VentanaPersona extends JFrame
         comboBoxTipoContacto = new JComboBox<String>();
         comboBoxTipoContacto.setBounds(188, 400, 130, 27);
         panel.add(comboBoxTipoContacto);
+        
+        txtCodPostal = new JTextField();
+        txtCodPostal.setBounds(188, 450, 130, 26);
+        panel.add(txtCodPostal);
+        txtCodPostal.setColumns(10);
+        
+        txtEquipoPref = new JTextField();
+        txtEquipoPref.setBounds(188, 500, 130, 26);
+        panel.add(txtEquipoPref);
+        txtEquipoPref.setColumns(10);
 		
 		btnAgregarPersona = new JButton("Agregar");
-		btnAgregarPersona.setBounds(150, 450, 117, 29);
+		btnAgregarPersona.setBounds(150, 550, 117, 29);
 		panel.add(btnAgregarPersona);
 		
 		this.setVisible(false);
@@ -183,7 +203,7 @@ public class VentanaPersona extends JFrame
 	public void mostrarVentana()
 	{
 		this.setVisible(true);
-		this.setSize(440,530);
+		this.setSize(440,630);
 	}
 	
 	public JTextField getTxtNombre() 
@@ -219,6 +239,14 @@ public class VentanaPersona extends JFrame
 	public JTextField getTxtDepto() {
 		return txtDepto;
 	}
+	
+	public JTextField getTxtCodPostal() {
+		return txtCodPostal;
+	}
+	
+	public JTextField getTxtEquipoPref() {
+		return txtEquipoPref;
+	}
 
 	public JButton getBtnAgregarPersona() 
 	{
@@ -235,6 +263,8 @@ public class VentanaPersona extends JFrame
 		this.txtAltura.setText("");
 		this.txtPiso.setText("");
 		this.txtDepto.setText("");
+		this.txtCodPostal.setText("");
+		this.txtEquipoPref.setText("");
 		this.dispose();
 	}
 	

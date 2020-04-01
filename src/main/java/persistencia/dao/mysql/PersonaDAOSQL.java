@@ -13,11 +13,11 @@ import dto.PersonaDTO;
 
 public class PersonaDAOSQL implements PersonaDAO
 {
-	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto, loc, tipo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String insert = "INSERT INTO personas(idPersona, nombre, telefono, email, cumpleanios, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String delete = "DELETE FROM personas WHERE idPersona = ?";
 	private static final String readall = "SELECT * FROM personas";
 	private static final String update = "UPDATE personas SET nombre = ?, telefono=?, email=?, cumpleanios=?, calle=?,"
-			+ " altura=?, piso=?, depto=?, loc=?, tipo=? WHERE idPersona = ?";
+			+ " altura=?, piso=?, depto=?, loc=?, tipo=?, codPostal=?, equipoPref=? WHERE idPersona = ?";
 		
 	public boolean insert(PersonaDTO persona)
 	{
@@ -38,6 +38,8 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(9, persona.getDepto());
 			statement.setString(10, persona.getLoc());
 			statement.setString(11, persona.getTipo());
+			statement.setString(12, persona.getCodPostal());
+			statement.setString(13, persona.getEquipoPref());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -74,7 +76,12 @@ public class PersonaDAOSQL implements PersonaDAO
 			statement.setString(8, persona.getDepto());
 			statement.setString(9, persona.getLoc());
 			statement.setString(10, persona.getTipo());
-			statement.setInt(11, persona.getIdPersona());
+			//
+			statement.setString(11, persona.getCodPostal());
+			statement.setString(12, persona.getEquipoPref());
+			//
+			statement.setInt(13, persona.getIdPersona());
+			//statement.setInt(11, persona.getIdPersona());
 			if(statement.executeUpdate() > 0)
 			{
 				conexion.commit();
@@ -150,7 +157,9 @@ public class PersonaDAOSQL implements PersonaDAO
 		String depto = resultSet.getString("Depto");
 		String loc = resultSet.getString("loc");
 		String tipo = resultSet.getString("tipo");
-		return new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo);
+		String codPostal = resultSet.getString("CodPostal");
+		String equipoPref = resultSet.getString("EquipoPref");
+		return new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
 	}
 
 	

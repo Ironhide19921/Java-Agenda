@@ -25,5 +25,7 @@ CREATE TABLE `personas`
   `Depto` varchar(10) NULL,
   `loc` varchar(50) NULL,
   `tipo` varchar(50) NULL,
+  `CodPostal` varchar(20) NOT NULL,
+  `EquipoPref` varchar(50) NOT NULL,
   PRIMARY KEY (`idPersona`)
  );

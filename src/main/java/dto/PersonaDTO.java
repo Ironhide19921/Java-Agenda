@@ -13,9 +13,11 @@ public class PersonaDTO
 	private String depto;
 	private String loc;
 	private String tipo;
+	private String codPostal;
+	private String equipoPref;
 
 	public PersonaDTO(int idPersona, String nombre, String telefono, String email, String cumpleanios, 
-			String calle, String altura, String piso, String depto, String loc, String tipo) {
+			String calle, String altura, String piso, String depto, String loc, String tipo, String codPostal, String equipoPref) {
 		this.idPersona = idPersona;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -27,6 +29,8 @@ public class PersonaDTO
 		this.depto = depto;
 		this.loc = loc;
 		this.tipo = tipo;
+		this.codPostal = codPostal;
+		this.equipoPref = equipoPref;
 	}
 
 	public String getLoc() {
@@ -115,6 +119,22 @@ public class PersonaDTO
 
 	public void setDepto(String depto) {
 		this.depto = depto;
+	}
+
+	public String getCodPostal() {
+		return codPostal;
+	}
+
+	public void setCodPostal(String codPostal) {
+		this.codPostal = codPostal;
+	}
+
+	public String getEquipoPref() {
+		return equipoPref;
+	}
+
+	public void setEquipoPref(String equipoPref) {
+		this.equipoPref = equipoPref;
 	}
 		
 }
