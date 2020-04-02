@@ -27,8 +27,8 @@ public class Vista
 	private JButton btnAbmLocalidades;
 	private JButton btnAbmTiposContacto;
 	private DefaultTableModel modelPersonas;
-	private  String[] nombreColumnas = {"id","Nombre y apellido","Telefono","Email",
-			"Cumpleaños","Calle","Altura","Piso","Depto","Localidad","Tipo de contacto"};
+	private  String[] nombreColumnas = {"id","Nombre y apellido","Telefono","Email","Cumpleaños",
+			"Calle","Altura","Piso","Depto","Localidad","Tipo de contacto", "Cod Postal", "Equipo Pref"};
 
 	public Vista() 
 	{
@@ -41,21 +41,20 @@ public class Vista
 	{
 		frame = new JFrame();
 
-		//frame.setBounds(100, 100, 520, 350);
-		frame.setBounds(100, 100, 975, 350);
+		frame.setBounds(100, 100, 1065, 350);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 
-		panel.setBounds(0, 0, 945, 262);
+		panel.setBounds(0, 0, 1045, 262);
 
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane spPersonas = new JScrollPane();
-		spPersonas.setBounds(10, 11, 930, 182);
+		spPersonas.setBounds(10, 11, 1030, 182);
 		panel.add(spPersonas);
 		
 		modelPersonas = new DefaultTableModel(null,nombreColumnas);
@@ -81,6 +80,10 @@ public class Vista
 		tablaPersonas.getColumnModel().getColumn(8).setResizable(false);
 		tablaPersonas.getColumnModel().getColumn(9).setPreferredWidth(100);
 		tablaPersonas.getColumnModel().getColumn(9).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(10).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(10).setResizable(false);
+		tablaPersonas.getColumnModel().getColumn(11).setPreferredWidth(100);
+		tablaPersonas.getColumnModel().getColumn(11).setResizable(false);
 		
 		spPersonas.setViewportView(tablaPersonas);
 		
@@ -191,7 +194,9 @@ public class Vista
 			String depto = p.getDepto();
 			String loc = p.getLoc();
 			String tipo = p.getTipo();
-			Object[] fila = {id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo};
+			String codPos = p.getCodPostal();
+			String eqPref = p.getEquipoPref();
+			Object[] fila = {id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPos, eqPref};
 			this.getModelPersonas().addRow(fila);
 		}
 		

@@ -2,7 +2,14 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
+
 import modelo.Agenda;
 import modelo.Localidad;
 import modelo.TipoContacto;
@@ -102,10 +109,107 @@ public class Controlador implements ActionListener
 			String codPostal = ventanaPersona.getTxtCodPostal().getText();
 			String equipoPref = ventanaPersona.getTxtEquipoPref().getText();
 			
-			PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
-			this.agenda.agregarPersona(nuevaPersona);
-			this.refrescarTabla();
-			this.ventanaPersona.cerrar();
+			
+			if(validarCampos(nombre, tel, email, cumple, calle, altura, codPostal, equipoPref)){
+				PersonaDTO nuevaPersona = new PersonaDTO(0, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
+				this.agenda.agregarPersona(nuevaPersona);
+				this.refrescarTabla();
+				this.ventanaPersona.cerrar();
+			}							
+		}
+		
+		private boolean validarCampos(String nombre, String tel, String email, String cumple, String calle, String altura, String codPostal, String equipoPref) {
+			boolean camposCorrectos = false;
+			
+			if(validarCampo(nombre) || validarCampo(calle) || 
+					validarCampo(codPostal) || validarCampo(equipoPref)) {
+				JOptionPane.showMessageDialog(null, 
+						"Nombre y apellido, Calle, Codigo Postal, \n"
+						+ " y Equipo Preferido no pueden estar vacíos",
+						"Campos vacios",
+						JOptionPane.ERROR_MESSAGE);
+				camposCorrectos = false;
+			}else {
+				camposCorrectos = true;
+			}	
+				
+			if(!validarNumero(tel) || validarCampo(tel)) {
+				JOptionPane.showMessageDialog(null, 
+						"El campo admite solo numeros o el mismo está vacío",
+						"Telefono Incorrecto",
+						JOptionPane.ERROR_MESSAGE);
+				camposCorrectos = false;
+			}else {
+				camposCorrectos = true;
+			}
+					
+			if(!validarEmail(email) || validarCampo(email)) {
+				JOptionPane.showMessageDialog(null, 
+						"El email no es válido o el campo está vacío",
+						"Email Incorrecto",
+						JOptionPane.ERROR_MESSAGE);
+				camposCorrectos = false;
+			}else {
+				camposCorrectos = true;
+			}
+								
+			if (!validarNumero(altura) || validarCampo(altura)) {
+				JOptionPane.showMessageDialog(null, 
+				"La altura admite solo numeros o el mismo está vacío",
+				"Altura Incorrecta",
+				JOptionPane.ERROR_MESSAGE);
+				camposCorrectos = false;
+			}else {
+				camposCorrectos = true;
+			}
+			
+			if (!validarCumple(cumple)) {
+				JOptionPane.showMessageDialog(null, 
+				"La fecha de cumpleaños no es válido"
+				+ "Formato válido: d/m/a, dd/mm/aa, dd/mm/aaaa",
+				"Fecha Incorrecta",
+				JOptionPane.ERROR_MESSAGE);
+				camposCorrectos = false;				
+			}else {
+				camposCorrectos = true;
+			}
+		
+			return camposCorrectos;
+		}
+		
+		private boolean validarCampo(String texto) {
+			return texto.isEmpty();
+		}
+		
+		private boolean validarEmail(String email) {
+			Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+							+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+			Matcher mather = pattern.matcher(email);
+			boolean resultado = mather.find();
+			return resultado;
+		}
+		
+		private boolean validarCumple(String cumple) {
+			try {
+	            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+	            formatoFecha.setLenient(false);
+	            formatoFecha.parse(cumple);
+	        } catch (ParseException e) {
+	            return false;
+	        }
+			return true;
+		}
+		
+		private boolean validarNumero(String cadenaNum) {
+			int altNumero;
+			boolean esNumero;
+			try {
+				altNumero = Integer.parseInt(cadenaNum);
+				esNumero = true;
+			}catch(Exception e){
+				esNumero = false;
+			}
+			return esNumero;
 		}
 		
 		private void editarPersona(ActionEvent e) {

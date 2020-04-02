@@ -96,11 +96,11 @@ public class VentanaPersona extends JFrame
         panel.add(lblTipoContacto);
         
         JLabel lblCodigoPostal = new JLabel("Codigo Postal");
-        lblCodigoPostal.setBounds(30, 450, 75, 16);
+        lblCodigoPostal.setBounds(30, 450, 80, 16);
         panel.add(lblCodigoPostal);
 		
         JLabel lblEquipoPref = new JLabel("Equipo Preferido");
-        lblEquipoPref.setBounds(30, 500, 75, 16);
+        lblEquipoPref.setBounds(30, 500, 95, 16);
         panel.add(lblEquipoPref);
         
 		txtNombre = new JTextField();
