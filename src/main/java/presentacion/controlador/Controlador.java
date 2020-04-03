@@ -42,7 +42,7 @@ public class Controlador implements ActionListener
 		private Provincia provincia;
 		private TipoContacto tipoContacto;
 		
-		public Controlador(Vista vista, Agenda agenda, Localidad localidad, TipoContacto tipoContacto)
+		public Controlador(Vista vista, Agenda agenda, Localidad localidad, TipoContacto tipoContacto, Provincia provincia)
 		{
 			this.vista = vista;
 			this.vista.getBtnAgregar().addActionListener(a->ventanaAgregarPersona(a));
@@ -74,6 +74,7 @@ public class Controlador implements ActionListener
 			this.agenda = agenda;
 			this.localidad = localidad;
 			this.tipoContacto = tipoContacto;
+			this.provincia = provincia;
 		}
 
 		private void ventanaAgregarPersona(ActionEvent a) {
@@ -92,6 +93,7 @@ public class Controlador implements ActionListener
 		
 		private void mostrarVentanaLocalidad(ActionEvent v) {
 			this.consultarProvincias();
+			this.cargarLocalidades();
 			this.ventanaLocalidad.mostrarVentana();
 		}
 		
@@ -356,6 +358,12 @@ public class Controlador implements ActionListener
 		private void consultarProvincias() {
 			this.ventanaLocalidad.rellenarListaProvincias(provincia.obtenerLocalidades());
 		}
+		
+		private void cargarLocalidades() {
+			String prov = String.valueOf(this.ventanaLocalidad.getcomboBoxProv().getSelectedItem());
+	   		System.out.println(prov);
+	   		this.ventanaLocalidad.cargarListaLocalidades(provincia.obtenerLocalidades(prov), prov);
+	   	}
 		
 		private void consultarTiposContacto()
 		{
