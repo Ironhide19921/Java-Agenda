@@ -3,6 +3,7 @@ package presentacion.vista;
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ public class VentanaLocalidad extends JFrame
 
 	private JButton btnAgregarLocalidad;
 	private static VentanaLocalidad INSTANCE;
+
 
 	public static VentanaLocalidad getInstance()
 	{
@@ -47,7 +49,7 @@ public class VentanaLocalidad extends JFrame
 		txtNombre.setBounds(188, 36, 130, 26);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
+
 		
 		btnAgregarLocalidad = new JButton("Agregar");
 		btnAgregarLocalidad.setBounds(150, 228, 117, 29);
@@ -66,7 +68,7 @@ public class VentanaLocalidad extends JFrame
 	{
 		return txtNombre;
 	}
-	
+
 
 	public JButton getBtnAgregarLocalidad() 
 	{
@@ -78,9 +80,9 @@ public class VentanaLocalidad extends JFrame
 		this.txtNombre.setText("");
 		this.dispose();
 
+
 	}
 	
-
 	
 }
 
