@@ -52,20 +52,20 @@
 			<frame>
 				<reportElement x="20" y="14" width="524" height="326" uuid="e935c016-7372-4ed3-9c1b-9a977c53e9e1"/>
 				<textField>
-					<reportElement x="20" y="50" width="100" height="31" uuid="1fea7d6b-e533-48ad-8f9f-65cf62acb2eb"/>
+					<reportElement x="20" y="14" width="100" height="31" uuid="1fea7d6b-e533-48ad-8f9f-65cf62acb2eb"/>
 					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="160" y="90" width="90" height="30" uuid="fc063a12-c623-4bcb-9ddf-a3ff712571b1"/>
+					<reportElement x="160" y="17" width="90" height="30" uuid="fc063a12-c623-4bcb-9ddf-a3ff712571b1"/>
 					<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="320" y="50" width="100" height="30" uuid="05363e34-735f-4f03-a1c7-b80b4c0f9112"/>
+					<reportElement x="320" y="13" width="100" height="30" uuid="05363e34-735f-4f03-a1c7-b80b4c0f9112"/>
 					<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 				</textField>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="0" y="90" width="500" height="200" uuid="67cae2e8-35ba-41c3-a8fe-0eca0c8e22ca"/>
+						<reportElement x="-10" y="100" width="500" height="200" uuid="e4e4b67d-3213-4a18-b972-bfd488ea1b9d"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>

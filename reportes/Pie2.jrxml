@@ -30,17 +30,18 @@
 				<reportElement x="280" y="0" width="100" height="30" uuid="f5d2ac18-30f3-40c1-b39c-73223c6b9d2c"/>
 				<text><![CDATA[Telefono]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="0" y="47" width="100" height="30" uuid="7fbb9d51-f0aa-4e17-bc67-38192f30ecc9"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="280" y="47" width="100" height="30" uuid="e244947d-4932-4983-b0ad-b7454b9f496f"/>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
-			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="529" splitType="Stretch"/>
+		<band height="529" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="23" width="100" height="30" uuid="7fbb9d51-f0aa-4e17-bc67-38192f30ecc9"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="23" width="100" height="30" uuid="e244947d-4932-4983-b0ad-b7454b9f496f"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 </jasperReport>
