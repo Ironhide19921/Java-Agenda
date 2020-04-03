@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import modelo.Agenda;
 import modelo.Localidad;
+import modelo.Provincia;
 import modelo.TipoContacto;
 import presentacion.reportes.ReporteAgenda;
 import presentacion.vista.VistaTipoContacto;
@@ -37,6 +39,7 @@ public class Controlador implements ActionListener
 		private VistaTipoContacto vistaTipoContacto;
 		private Agenda agenda;
 		private Localidad localidad;
+		private Provincia provincia;
 		private TipoContacto tipoContacto;
 		
 		public Controlador(Vista vista, Agenda agenda, Localidad localidad, TipoContacto tipoContacto)
@@ -88,6 +91,7 @@ public class Controlador implements ActionListener
 		}
 		
 		private void mostrarVentanaLocalidad(ActionEvent v) {
+			this.consultarProvincias();
 			this.ventanaLocalidad.mostrarVentana();
 		}
 		
@@ -260,7 +264,7 @@ public class Controlador implements ActionListener
 		}
 				
 		private void guardarLocalidad(ActionEvent h) {
-			String nombre = this.ventanaLocalidad.getTxtNombre().getText();
+			String nombre = this.ventanaLocalidad.getTxtNombreLoc().getText();
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
 			this.localidad.agregarLocalidad(nuevaLocalidad);
 			this.refrescarTablaLocalidades();
@@ -347,6 +351,10 @@ public class Controlador implements ActionListener
 		private void consultarLocalidades()
 		{
 			this.ventanaPersona.rellenarListaLocalidades(localidad.obtenerLocalidades());	
+		}
+		
+		private void consultarProvincias() {
+			this.ventanaLocalidad.rellenarListaProvincias(provincia.obtenerLocalidades());
 		}
 		
 		private void consultarTiposContacto()
