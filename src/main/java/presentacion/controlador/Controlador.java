@@ -231,8 +231,8 @@ public class Controlador implements ActionListener
 				String depto = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,8));
 				String loc = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,9));
 				String tipo = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,10));
-				String codPostal = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,10));
-				String equipoPref = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,10));
+				String codPostal = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,11));
+				String equipoPref = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,12));
 				
 				PersonaDTO nuevaPersona = new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
 				this.agenda.editarPersona(nuevaPersona);

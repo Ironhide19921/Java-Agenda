@@ -24,8 +24,9 @@
 	<field name="codPostal_1" class="java.lang.String">
 		<fieldDescription><![CDATA[codPostal]]></fieldDescription>
 	</field>
+	<sortField name="codPostal" order="Descending"/>
 	<title>
-		<band height="170" splitType="Stretch">
+		<band height="146" splitType="Stretch">
 			<frame>
 				<reportElement x="0" y="0" width="550" height="130" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
@@ -47,29 +48,32 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="36" splitType="Stretch">
+		<band height="71" splitType="Stretch">
 			<frame>
 				<reportElement x="0" y="4" width="550" height="24" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
 				<staticText>
-					<reportElement x="3" y="2" width="160" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
+					<reportElement x="10" y="2" width="187" height="38" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
 					<text><![CDATA[Equipos favoritos:]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
+		<band height="49" splitType="Stretch">
 			<frame>
 				<reportElement x="2" y="6" width="550" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
-					<reportElement x="0" y="0" width="280" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
+					<reportElement x="0" y="0" width="170" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
 					<text><![CDATA[Equipo de futbol]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="0" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<reportElement x="280" y="1" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
@@ -81,11 +85,11 @@
 	<detail>
 		<band height="38" splitType="Stretch">
 			<textField>
-				<reportElement x="90" y="5" width="100" height="30" uuid="e3bd44be-fe9a-45b7-9dc4-488451a92172"/>
+				<reportElement x="10" y="5" width="162" height="30" uuid="e3bd44be-fe9a-45b7-9dc4-488451a92172"/>
 				<textFieldExpression><![CDATA[$F{equipoPref}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="2" width="100" height="30" uuid="261cc6c7-0b99-4d67-b628-12db10d08ab5"/>
+				<reportElement x="282" y="3" width="100" height="30" uuid="261cc6c7-0b99-4d67-b628-12db10d08ab5"/>
 				<textFieldExpression><![CDATA[$F{codPostal}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -109,7 +113,7 @@
 				<reportElement x="10" y="8" width="520" height="200" uuid="36c19a89-ac6d-4a52-84fc-c320f34efff6"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="17" y="0" width="500" height="200" uuid="1186e329-caf2-440e-9222-731821166774"/>
+						<reportElement x="17" y="5" width="500" height="200" uuid="b594ebbe-4391-4ff3-8f0a-bca0c05911fe"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
