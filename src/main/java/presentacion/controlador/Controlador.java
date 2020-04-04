@@ -63,6 +63,7 @@ public class Controlador implements ActionListener
 			
 			this.ventanaLocalidad = VentanaLocalidad.getInstance();
 			this.ventanaLocalidad.getBtnAgregarLocalidad().addActionListener(h->guardarLocalidad(h));
+			this.ventanaLocalidad.getcomboBoxProv().addActionListener(k ->cambiarLocalidades(k));
 			
 			this.vistaTipoContacto = VistaTipoContacto.getInstance();
 			this.vistaTipoContacto.getBtnAgregarTipoContacto().addActionListener(w->mostrarVentanaTipoContacto(w));
@@ -76,6 +77,13 @@ public class Controlador implements ActionListener
 			this.localidad = localidad;
 			this.tipoContacto = tipoContacto;
 			this.provincia = provincia;
+		}
+
+		private Object cambiarLocalidades(ActionEvent k) {
+			// TODO Auto-generated method stub
+			System.out.println(this.ventanaLocalidad.getcomboBoxProv().getSelectedItem());
+			this.cargarLocalidades();
+			return null;
 		}
 
 		private void ventanaAgregarPersona(ActionEvent a) {
