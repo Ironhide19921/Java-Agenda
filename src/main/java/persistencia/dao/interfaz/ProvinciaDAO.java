@@ -9,5 +9,7 @@ public interface ProvinciaDAO {
 	public List<ProvinciaDTO> readAll();
 	
 	public List<ProvinciaDTO> getLocalidadesByProv(String nombre);
+	
+	public List<String> getLocsByProv(String nombre);
 
 }

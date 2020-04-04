@@ -22,4 +22,8 @@ public class Provincia {
 		return this.provincia.getLocalidadesByProv(nombre);		
 	}
 	
+	public List<String> obtenerLocs(String nombre){
+		return this.provincia.getLocsByProv(nombre);		
+	}
+	
 }

@@ -2,13 +2,13 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import modelo.Agenda;
@@ -24,6 +24,7 @@ import presentacion.vista.Vista;
 import presentacion.vista.VistaLocalidad;
 import dto.LocalidadDTO;
 import dto.PersonaDTO;
+import dto.ProvinciaDTO;
 import dto.TipoContactoDTO;
 
 public class Controlador implements ActionListener
@@ -360,10 +361,28 @@ public class Controlador implements ActionListener
 		}
 		
 		private void cargarLocalidades() {
-			String prov = String.valueOf(this.ventanaLocalidad.getcomboBoxProv().getSelectedItem());
-	   		System.out.println(prov);
-	   		this.ventanaLocalidad.cargarListaLocalidades(provincia.obtenerLocalidades(prov), prov);
+					
+			String prov = (String)this.ventanaLocalidad.getcomboBoxProv().getSelectedItem();
+		   	System.out.println(prov);
+		   	//Imprimo los resultados obtenidos
+		   	for (ProvinciaDTO provi : provincia.obtenerLocalidades(prov)) {
+				System.out.println(provi.getNombreProvincia() + " " + provi.getNombreLocalidad());
+			}
+		   	this.ventanaLocalidad.cargarListaLocalidades(provincia.obtenerLocalidades(prov), prov);
+			
 	   	}
+		
+		public void cargarLocalidades(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				String prov = (String.valueOf(this.ventanaLocalidad.getcomboBoxProv().getSelectedItem()));
+			   	System.out.println(prov);
+			   	//Imprimo los resultados obtenidos
+			   	for (ProvinciaDTO provi : provincia.obtenerLocalidades(prov)) {
+					System.out.println(provi.getNombreProvincia() + " " + provi.getNombreLocalidad());
+				}
+			   	this.ventanaLocalidad.cargarListaLocalidades(provincia.obtenerLocalidades(prov), prov);
+			}
+	   	}		
 		
 		private void consultarTiposContacto()
 		{
@@ -372,5 +391,7 @@ public class Controlador implements ActionListener
 
 		@Override
 		public void actionPerformed(ActionEvent e) { }
+		
+		public void actionPerformed(ItemEvent e) { }
 		
 }
