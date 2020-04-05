@@ -15,12 +15,10 @@ import dto.ProvinciaDTO;
 public class VentanaLocalidad extends JFrame
 {
     private static final long serialVersionUID = 1L;
-    //private JTextField txtNombrePais;
-    //private JTextField txtNombreProv;
     private JTextField txtNombreLoc;
     private JComboBox<String> comboBoxPais;
     private JComboBox<String> comboBoxProv;
-    private JComboBox/*<String>*/ comboBoxLoc;
+    private JComboBox<String> comboBoxLoc;
 
     private JButton btnAgregarLocalidad;
     private static VentanaLocalidad INSTANCE;
@@ -60,35 +58,19 @@ public class VentanaLocalidad extends JFrame
    	 lblNombreLoc.setBounds(30, 120, 119, 16);
    	 panel.add(lblNombreLoc);
    	 
-   	 /*txtNombrePais = new JTextField();
-   	 txtNombrePais.setBounds(188, 36, 130, 26);
-   	 panel.add(txtNombrePais);
-   	 txtNombrePais.setColumns(10);*/
-   	 
-   	comboBoxPais = new JComboBox<String>();
-    comboBoxPais.setBounds(188, 36, 130, 27);
-    comboBoxPais.addItem("Argentina");
-    panel.add(comboBoxPais);
-   	 
-   	 /*txtNombreProv = new JTextField();
-   	 txtNombreProv.setBounds(188, 66, 130, 26);
-   	 panel.add(txtNombreProv);
-   	 txtNombreProv.setColumns(10);*/
-   	 
-    comboBoxProv = new JComboBox<String>();
-    comboBoxProv.setBounds(188, 76, 190, 27);
-    panel.add(comboBoxProv);
+   	 comboBoxPais = new JComboBox<String>();
+     comboBoxPais.setBounds(188, 36, 130, 27);
+     comboBoxPais.addItem("Argentina");
+     panel.add(comboBoxPais);
+   	    	 
+     comboBoxProv = new JComboBox<String>();
+     comboBoxProv.setBounds(188, 76, 190, 27);
+     panel.add(comboBoxProv);
    	
-    comboBoxLoc = new JComboBox<String>();
-    comboBoxLoc.setBounds(188, 116, 190, 27);
-    panel.add(comboBoxLoc);
-   	 
-   	 /*txtNombreLoc = new JTextField();
-   	 txtNombreLoc.setBounds(188, 116, 130, 26);
-   	 panel.add(txtNombreLoc);
-   	 txtNombreLoc.setColumns(10);*/
-
-   	 
+     comboBoxLoc = new JComboBox<String>();
+     comboBoxLoc.setBounds(188, 116, 190, 27);
+     panel.add(comboBoxLoc);
+    	 
    	 btnAgregarLocalidad = new JButton("Agregar");
    	 btnAgregarLocalidad.setBounds(150, 228, 117, 29);
    	 panel.add(btnAgregarLocalidad);
@@ -102,19 +84,11 @@ public class VentanaLocalidad extends JFrame
    	 this.setSize(440,499);
     }
     
-    /*public JTextField getTxtNombrePais(){
-   	 return txtNombrePais;
-    }*/
-    
-    public JComboBox/*<String>*/ getcomboBoxPais(){
+    public JComboBox<String> getcomboBoxPais(){
    	 return comboBoxPais;
     }
     
-    /*public JTextField getTxtNombreProv(){
-   	 return txtNombreProv;
-    }*/
-    
-    public JComboBox/*<String>*/ getcomboBoxProv(){
+    public JComboBox<String> getcomboBoxProv(){
    	 return comboBoxProv;
     }
     
@@ -122,7 +96,7 @@ public class VentanaLocalidad extends JFrame
    	 return txtNombreLoc;
     }
     
-    public JComboBox/*<String>*/ getComboBoxLoc(){
+    public JComboBox<String> getComboBoxLoc(){
    	 return comboBoxLoc;
     }
 
@@ -132,8 +106,7 @@ public class VentanaLocalidad extends JFrame
     }
     
     public void cerrar(){
-   	 this.txtNombreLoc.setText("");
-   	 this.dispose();
+    	this.dispose();
     }
     
     public void rellenarListaProvincias(List<ProvinciaDTO> provincias) {
@@ -143,35 +116,12 @@ public class VentanaLocalidad extends JFrame
     }
     
     public void cargarListaLocalidades(List<ProvinciaDTO> provincias, String nombreProv) {
-    	 this.comboBoxLoc.removeAllItems();
-    	 
+    	 this.comboBoxLoc.removeAllItems();    	 
     	 for (ProvinciaDTO valor : provincias){
     		 if(valor.getNombreProvincia().equalsIgnoreCase(nombreProv)) {
     			 this.comboBoxLoc.addItem(valor.getNombreLocalidad());
     		 }
     	 }
     }
-    
-    public void cargarListaLocalidades2(List<ProvinciaDTO> provincias, List<ProvinciaDTO> provsYlocs, String nombreProv) {
-   	 this.comboBoxLoc.removeAllItems();
-   	 for (ProvinciaDTO valor : provincias){
-   		 for(ProvinciaDTO valor2 : provsYlocs) {
-   			if(valor.getNombreProvincia().equalsIgnoreCase(valor2.getNombreProvincia())) {
-      			 this.comboBoxLoc.addItem(valor.getNombreLocalidad());
-      		 }
-   		 }
-   		 
-   	 }
-   }
-    
-    public void cargarListaLocs(List<String> provincias, String nombreProv) {
-   	 this.comboBoxLoc.removeAllItems();
-   	 
-   	 for (String valor : provincias){
-   		 if(valor.equalsIgnoreCase(nombreProv)) {
-   			 this.comboBoxLoc.addItem(valor);
-   		 }
-   	 }
-   }
     
 }

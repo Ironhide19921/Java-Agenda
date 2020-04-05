@@ -2,7 +2,6 @@ package presentacion.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -134,8 +133,8 @@ public class Controlador implements ActionListener
 		}
 		
 		private boolean validarCampos(String nombre, String tel, String email, String cumple, String calle, String altura, String codPostal, String equipoPref) {
-			boolean camposCorrectos = false;
 			
+			boolean camposCorrectos = false;
 			if(validarCampo(nombre) || validarCampo(calle) || 
 					validarCampo(codPostal) || validarCampo(equipoPref)) {
 				JOptionPane.showMessageDialog(null, 
@@ -147,49 +146,53 @@ public class Controlador implements ActionListener
 			}else {
 				camposCorrectos = true;
 			}	
-				
+			
+			boolean telCorrecto = false;
 			if(!validarNumero(tel) || validarCampo(tel)) {
 				JOptionPane.showMessageDialog(null, 
 						"El campo admite solo numeros o el mismo está vacío",
 						"Telefono Incorrecto",
 						JOptionPane.ERROR_MESSAGE);
-				camposCorrectos = false;
+				telCorrecto = false;
 			}else {
-				camposCorrectos = true;
+				telCorrecto = true;
 			}
-					
+			
+			boolean emailCorrecto = false;		
 			if(!validarEmail(email) || validarCampo(email)) {
 				JOptionPane.showMessageDialog(null, 
 						"El email no es válido o el campo está vacío",
 						"Email Incorrecto",
 						JOptionPane.ERROR_MESSAGE);
-				camposCorrectos = false;
+				emailCorrecto = false;
 			}else {
-				camposCorrectos = true;
+				emailCorrecto = true;
 			}
-								
+			
+			boolean alturaCorrecta = false;					
 			if (!validarNumero(altura) || validarCampo(altura)) {
 				JOptionPane.showMessageDialog(null, 
 				"La altura admite solo numeros o el mismo está vacío",
 				"Altura Incorrecta",
 				JOptionPane.ERROR_MESSAGE);
-				camposCorrectos = false;
+				alturaCorrecta = false;
 			}else {
-				camposCorrectos = true;
+				alturaCorrecta = true;
 			}
 			
+			boolean cumpleCorrecto = false;
 			if (!validarCumple(cumple)) {
 				JOptionPane.showMessageDialog(null, 
 				"La fecha de cumpleaños no es válido"
 				+ "Formato válido: d/m/a, dd/mm/aa, dd/mm/aaaa",
 				"Fecha Incorrecta",
 				JOptionPane.ERROR_MESSAGE);
-				camposCorrectos = false;				
+				cumpleCorrecto = false;				
 			}else {
-				camposCorrectos = true;
+				cumpleCorrecto = true;
 			}
 		
-			return camposCorrectos;
+			return camposCorrectos && telCorrecto && emailCorrecto && alturaCorrecta && cumpleCorrecto;
 		}
 		
 		private boolean validarCampo(String texto) {
@@ -245,9 +248,11 @@ public class Controlador implements ActionListener
 				String codPostal = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,11));
 				String equipoPref = String.valueOf(this.vista.getModelPersonas().getValueAt(fila,12));
 				
-				PersonaDTO nuevaPersona = new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
-				this.agenda.editarPersona(nuevaPersona);
-				this.refrescarTabla();
+				if(validarCampos(nombre, tel, email, cumple, calle, altura, codPostal, equipoPref)){
+					PersonaDTO nuevaPersona = new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
+					this.agenda.editarPersona(nuevaPersona);
+					this.refrescarTabla();
+				}
 			}
 		}
 		
@@ -275,7 +280,7 @@ public class Controlador implements ActionListener
 		}
 				
 		private void guardarLocalidad(ActionEvent h) {
-			String nombre = this.ventanaLocalidad.getTxtNombreLoc().getText();
+			String nombre = String.valueOf(this.ventanaLocalidad.getComboBoxLoc().getSelectedItem());
 			LocalidadDTO nuevaLocalidad = new LocalidadDTO(0, nombre);
 			this.localidad.agregarLocalidad(nuevaLocalidad);
 			this.refrescarTablaLocalidades();
@@ -368,10 +373,8 @@ public class Controlador implements ActionListener
 			this.ventanaLocalidad.rellenarListaProvincias(provincia.obtenerLocalidades());
 		}
 		
-		private void cargarLocalidades() {
-					
+		private void cargarLocalidades() {				
 			String prov = (String)this.ventanaLocalidad.getcomboBoxProv().getSelectedItem();
-		   	System.out.println(prov);
 		   	//Imprimo los resultados obtenidos
 		   	for (ProvinciaDTO provi : provincia.obtenerLocalidades(prov)) {
 				System.out.println(provi.getNombreProvincia() + " " + provi.getNombreLocalidad());
@@ -380,18 +383,6 @@ public class Controlador implements ActionListener
 			
 	   	}
 		
-		public void cargarLocalidades(ItemEvent e) {
-			if (e.getStateChange() == ItemEvent.SELECTED) {
-				String prov = (String.valueOf(this.ventanaLocalidad.getcomboBoxProv().getSelectedItem()));
-			   	System.out.println(prov);
-			   	//Imprimo los resultados obtenidos
-			   	for (ProvinciaDTO provi : provincia.obtenerLocalidades(prov)) {
-					System.out.println(provi.getNombreProvincia() + " " + provi.getNombreLocalidad());
-				}
-			   	this.ventanaLocalidad.cargarListaLocalidades(provincia.obtenerLocalidades(prov), prov);
-			}
-	   	}		
-		
 		private void consultarTiposContacto()
 		{
 			this.ventanaPersona.rellenarListaTiposContacto(tipoContacto.obtenerTiposContacto());	
@@ -399,7 +390,5 @@ public class Controlador implements ActionListener
 
 		@Override
 		public void actionPerformed(ActionEvent e) { }
-		
-		public void actionPerformed(ItemEvent e) { }
-		
+				
 }

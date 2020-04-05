@@ -14,7 +14,6 @@ public class ProvinciaDAOSQL implements ProvinciaDAO{
 	
 	private static final String readall = "SELECT DISTINCT (p.NombreProvincia) FROM provincias p";	
 	private static final String getLocalidadesPorProv = "SELECT NombreProvincia, NombreLocalidad FROM provincias WHERE NombreProvincia = ?";
-	private static final String getLocasyProv = "SELECT NombreProvincia, NombreLocalidad FROM provincias";
 
 	public List<ProvinciaDTO> readAll(){
 		PreparedStatement statement;
@@ -64,28 +63,6 @@ public class ProvinciaDAOSQL implements ProvinciaDAO{
    	 	String loc = resultSet.getString("NombreLocalidad");
    	 	return new ProvinciaDTO(prov, loc);
     }
-
-	@Override
-	public List<String> getLocsByProv(String nombre) {
-		PreparedStatement statement;
-  		ResultSet resultSet; //Guarda el resultado de la query
-  		ArrayList<String> listaLocalidades = new ArrayList<String>();
-  		Conexion conexion = Conexion.getConexion();
-  		try{
-  			 statement = conexion.getSQLConexion().prepareStatement(getLocalidadesPorProv);
-  			 statement.setString(1, nombre);
-  			 resultSet = statement.executeQuery();
-  			 while(resultSet.next()){
-  				 listaLocalidades.add(resultSet.getString("NombreLocalidad"));
-  			 }
-  		 }
-  		 catch (SQLException e){
-  			 e.printStackTrace();
-  		 }
-  		 return listaLocalidades;	
-  		 }
-
-    
     
 
 }
