@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Reporte"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="598"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="391"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT COUNT(EQUIPOPREF) FROM PERSONAS GROUP BY EQUIPOPREF]]>
+		<![CDATA[SELECT personas.EquipoPref ,personas.CodPostal, COUNT( idPersona ) AS cantidadPorEquipo, 
+( SELECT COUNT( personas.EquipoPref  ) *100 / COUNT( A.idpersona )
+FROM agenda.personas AS A
+) AS porcentaje
+FROM agenda.personas
+GROUP BY personas.EquipoPref]]>
 	</queryString>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	<field name="EquipoPref" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EquipoPref"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
 	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	<field name="CodPostal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CodPostal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
 	</field>
-	<field name="equipoPref" class="java.lang.String">
-		<fieldDescription><![CDATA[equipoPref]]></fieldDescription>
+	<field name="cantidadPorEquipo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cantidadPorEquipo"/>
 	</field>
-	<field name="codPostal" class="java.lang.String">
-		<fieldDescription><![CDATA[codPostal]]></fieldDescription>
+	<field name="porcentaje" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
 	</field>
-	<sortField name="codPostal" order="Descending"/>
 	<title>
 		<band height="146" splitType="Stretch">
 			<frame>
@@ -77,14 +86,14 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="48" splitType="Stretch">
+		<band height="55" splitType="Stretch">
 			<textField>
-				<reportElement x="7" y="5" width="162" height="30" uuid="e3bd44be-fe9a-45b7-9dc4-488451a92172"/>
-				<textFieldExpression><![CDATA[$F{equipoPref}]]></textFieldExpression>
+				<reportElement x="280" y="10" width="100" height="30" uuid="0c2b9c00-eec9-4f57-bda0-98b0962e99eb"/>
+				<textFieldExpression><![CDATA[$F{CodPostal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="282" y="3" width="100" height="30" uuid="261cc6c7-0b99-4d67-b628-12db10d08ab5"/>
-				<textFieldExpression><![CDATA[$F{codPostal}]]></textFieldExpression>
+				<reportElement x="2" y="10" width="170" height="30" uuid="31c4fb1c-75ff-4d98-883f-03e35b4b1095"/>
+				<textFieldExpression><![CDATA[$F{EquipoPref}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -107,16 +116,15 @@
 				<reportElement x="10" y="8" width="520" height="225" uuid="36c19a89-ac6d-4a52-84fc-c320f34efff6"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="10" y="10" width="500" height="200" uuid="2172f663-0869-41d9-a3db-6b715fbb2162"/>
+						<reportElement x="10" y="10" width="500" height="200" uuid="b65f40d0-8258-4e98-8f4e-acb5e835646e"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
 						<dataset resetType="Report"/>
-						<keyExpression><![CDATA[$F{equipoPref}]]></keyExpression>
-						<valueExpression><![CDATA[1]]></valueExpression>
-						<labelExpression><![CDATA[$F{equipoPref}]]></labelExpression>
+						<keyExpression><![CDATA[$F{EquipoPref}]]></keyExpression>
+						<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
 					</pieDataset>
 					<piePlot>
 						<plot/>
