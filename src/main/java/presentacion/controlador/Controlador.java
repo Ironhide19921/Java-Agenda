@@ -252,6 +252,8 @@ public class Controlador implements ActionListener
 					PersonaDTO nuevaPersona = new PersonaDTO(id, nombre, tel, email, cumple, calle, altura, piso, depto, loc, tipo, codPostal, equipoPref);
 					this.agenda.editarPersona(nuevaPersona);
 					this.refrescarTabla();
+				}else {
+					this.refrescarTabla();
 				}
 			}
 		}
