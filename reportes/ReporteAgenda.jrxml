@@ -1,28 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="284e0c88-a4b2-4ff8-98a2-d67b80bcffaf">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Reporte"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="598"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="391"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[]]>
+		<![CDATA[SELECT personas.EquipoPref ,personas.CodPostal, COUNT( idPersona ) AS cantidadPorEquipo, 
+( SELECT COUNT( personas.EquipoPref  ) *100 / COUNT( A.idpersona )
+FROM agenda.personas AS A
+) AS porcentaje
+FROM agenda.personas
+GROUP BY personas.EquipoPref]]>
 	</queryString>
-	<field name="telefono" class="java.lang.String">
-		<fieldDescription><![CDATA[telefono]]></fieldDescription>
+	<field name="EquipoPref" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="EquipoPref"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
 	</field>
-	<field name="nombre" class="java.lang.String">
-		<fieldDescription><![CDATA[nombre]]></fieldDescription>
+	<field name="CodPostal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CodPostal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
+	<field name="cantidadPorEquipo" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="cantidadPorEquipo"/>
+	</field>
+	<field name="porcentaje" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
+	</field>
+	<sortField name="CodPostal"/>
 	<title>
-		<band height="45" splitType="Stretch">
+		<band height="146" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="0" width="550" height="40" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
+				<reportElement x="0" y="0" width="550" height="130" uuid="fbf866cd-64dc-4043-b98c-ed8d9f31d19c"/>
 				<staticText>
-					<reportElement x="0" y="10" width="170" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
+					<reportElement x="122" y="40" width="300" height="30" uuid="df09700e-f0a8-43aa-a9d6-1430d1a7476d"/>
 					<textElement>
-						<font size="18"/>
+						<font fontName="Noto Mono" size="24"/>
 					</textElement>
 					<text><![CDATA[Reporte de personas]]></text>
 				</staticText>
@@ -38,46 +52,51 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="36" splitType="Stretch">
+		<band height="71" splitType="Stretch">
 			<frame>
-				<reportElement x="0" y="4" width="550" height="24" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
+				<reportElement x="0" y="4" width="550" height="46" uuid="d078763f-d7ce-421d-8cc3-c9d81fe255f9"/>
 				<staticText>
-					<reportElement x="3" y="2" width="160" height="20" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
-					<text><![CDATA[Reporte para el ejemplo Agenda]]></text>
+					<reportElement x="1" y="2" width="187" height="38" uuid="8bd693bf-e003-4042-a1f8-881763b9ba1e"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Equipos favoritos:]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="31" splitType="Stretch">
+		<band height="49" splitType="Stretch">
 			<frame>
 				<reportElement x="2" y="6" width="550" height="23" uuid="23209a62-cc9d-4b81-8e93-aa9cc3a92b36"/>
 				<staticText>
-					<reportElement x="0" y="0" width="280" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
-					<textElement textAlignment="Center">
+					<reportElement x="0" y="0" width="170" height="21" uuid="6f5462fa-eb72-479f-bb27-fb5ef7144791"/>
+					<textElement textAlignment="Left">
 						<font size="14"/>
 					</textElement>
-					<text><![CDATA[Nombre y apellido]]></text>
+					<text><![CDATA[Equipo de futbol]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="280" y="0" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
-					<textElement textAlignment="Center">
+					<reportElement x="278" y="1" width="100" height="20" uuid="e2252ea3-811b-43d8-ae6b-e9b261b705f9"/>
+					<textElement textAlignment="Left">
 						<font size="14"/>
 					</textElement>
-					<text><![CDATA[Teléfono]]></text>
+					<text><![CDATA[Cod Postal]]></text>
 				</staticText>
 			</frame>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="45" splitType="Stretch">
+		<band height="47" splitType="Stretch">
 			<textField>
-				<reportElement x="5" y="0" width="225" height="18" uuid="4a345b01-b751-4529-b6d6-2ccf3c13ff66"/>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				<reportElement x="280" y="10" width="100" height="30" uuid="0c2b9c00-eec9-4f57-bda0-98b0962e99eb"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{CodPostal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="285" y="1" width="215" height="18" uuid="dd3f7d4c-c2c3-4ee6-8d98-1b88fe0228ec"/>
-				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+				<reportElement x="2" y="10" width="170" height="30" uuid="31c4fb1c-75ff-4d98-883f-03e35b4b1095"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{EquipoPref}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -85,17 +104,38 @@
 		<band height="7" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="33" splitType="Stretch">
+		<band height="280" splitType="Stretch">
 			<textField>
-				<reportElement x="355" y="0" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
+				<reportElement x="363" y="233" width="100" height="30" uuid="5ce007da-8e81-48b7-91fd-8e603c20d7ef"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="455" y="0" width="100" height="30" uuid="52b869cb-a151-48f6-ad3c-3147a8d111e8"/>
+				<reportElement x="470" y="233" width="100" height="30" uuid="52b869cb-a151-48f6-ad3c-3147a8d111e8"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
+			<frame>
+				<reportElement x="10" y="4" width="520" height="225" uuid="36c19a89-ac6d-4a52-84fc-c320f34efff6"/>
+				<pieChart>
+					<chart evaluationTime="Report">
+						<reportElement x="10" y="10" width="500" height="200" uuid="b75ee886-8278-4dc5-b96c-a54ed0d281fe"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<pieDataset>
+						<dataset resetType="Report"/>
+						<keyExpression><![CDATA[$F{EquipoPref}]]></keyExpression>
+						<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
+						<labelExpression><![CDATA[$F{porcentaje}.toPlainString()]]></labelExpression>
+					</pieDataset>
+					<piePlot>
+						<plot/>
+						<itemLabel/>
+					</piePlot>
+				</pieChart>
+			</frame>
 		</band>
 	</pageFooter>
 </jasperReport>
