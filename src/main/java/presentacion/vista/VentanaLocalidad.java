@@ -106,6 +106,8 @@ public class VentanaLocalidad extends JFrame
     }
     
     public void cerrar(){
+    	this.comboBoxProv.removeAllItems();
+    	this.comboBoxLoc.removeAllItems();
     	this.dispose();
     }
     

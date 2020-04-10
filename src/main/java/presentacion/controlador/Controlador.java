@@ -275,9 +275,17 @@ public class Controlador implements ActionListener
 			{
 				int id = Integer.parseInt(String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila, 0)));
 				String nombre = String.valueOf(this.vistaTipoContacto.getModelTiposContacto().getValueAt(fila,1));
-				TipoContactoDTO nuevaTipoContacto= new TipoContactoDTO(id, nombre);
-				this.tipoContacto.editarTipoContacto(nuevaTipoContacto);
-				this.refrescarTablaTiposContacto();
+				if(validarCampo(nombre)) {
+					JOptionPane.showMessageDialog(null, 
+							"El campo no puede estar vacío",
+							"Campo vacio",
+							JOptionPane.ERROR_MESSAGE);	
+					refrescarTablaTiposContacto();
+				}else {
+					TipoContactoDTO nuevaTipoContacto= new TipoContactoDTO(id, nombre);
+					this.tipoContacto.editarTipoContacto(nuevaTipoContacto);
+					this.refrescarTablaTiposContacto();
+				}
 			}
 		}
 				
@@ -291,10 +299,17 @@ public class Controlador implements ActionListener
 		
 		private void guardarTipoContacto(ActionEvent y) {
 			String nombre = this.ventanaTipoContacto.getTxtNombre().getText();
-			TipoContactoDTO nuevaTipoContacto = new TipoContactoDTO(0, nombre);
-			this.tipoContacto.agregarTipoContacto(nuevaTipoContacto);
-			this.refrescarTablaTiposContacto();
-			this.ventanaTipoContacto.cerrar();
+			if(validarCampo(nombre)) {
+				JOptionPane.showMessageDialog(null, 
+						"El campo no puede estar vacío",
+						"Campo vacio",
+						JOptionPane.ERROR_MESSAGE);				
+			}else {
+				TipoContactoDTO nuevaTipoContacto = new TipoContactoDTO(0, nombre);
+				this.tipoContacto.agregarTipoContacto(nuevaTipoContacto);
+				this.refrescarTablaTiposContacto();
+				this.ventanaTipoContacto.cerrar();
+			}
 		}
 
 		private void mostrarReporte(ActionEvent r) {

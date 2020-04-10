@@ -145,6 +145,7 @@ public class VistaLocalidad extends JFrame
 
 	public void cerrar()
 	{
+		
 		this.txtNombre.setText("");
 		this.dispose();
 	}
