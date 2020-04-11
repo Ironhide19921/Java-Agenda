@@ -14,21 +14,12 @@ FROM agenda.personas AS A
 FROM agenda.personas
 GROUP BY personas.EquipoPref]]>
 	</queryString>
-	<field name="EquipoPref" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="EquipoPref"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	<field name="equipoPref" class="java.lang.String">
+		<fieldDescription><![CDATA[equipoPref]]></fieldDescription>
 	</field>
-	<field name="CodPostal" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="CodPostal"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
+	<field name="codPostal" class="java.lang.String">
+		<fieldDescription><![CDATA[codPostal]]></fieldDescription>
 	</field>
-	<field name="cantidadPorEquipo" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.label" value="cantidadPorEquipo"/>
-	</field>
-	<field name="porcentaje" class="java.math.BigDecimal">
-		<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
-	</field>
-	<sortField name="CodPostal"/>
 	<title>
 		<band height="146" splitType="Stretch">
 			<frame>
@@ -91,12 +82,12 @@ GROUP BY personas.EquipoPref]]>
 			<textField>
 				<reportElement x="280" y="10" width="100" height="30" uuid="0c2b9c00-eec9-4f57-bda0-98b0962e99eb"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{CodPostal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codPostal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="2" y="10" width="170" height="30" uuid="31c4fb1c-75ff-4d98-883f-03e35b4b1095"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{EquipoPref}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{equipoPref}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -119,16 +110,15 @@ GROUP BY personas.EquipoPref]]>
 				<reportElement x="10" y="4" width="520" height="225" uuid="36c19a89-ac6d-4a52-84fc-c320f34efff6"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="10" y="10" width="500" height="200" uuid="b75ee886-8278-4dc5-b96c-a54ed0d281fe"/>
+						<reportElement x="10" y="10" width="500" height="200" uuid="c26dd62d-776c-410e-ab13-187f2e64ecb1"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
 						<dataset resetType="Report"/>
-						<keyExpression><![CDATA[$F{EquipoPref}]]></keyExpression>
-						<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
-						<labelExpression><![CDATA[$F{porcentaje}.toPlainString()]]></labelExpression>
+						<keyExpression><![CDATA[$F{equipoPref}]]></keyExpression>
+						<valueExpression><![CDATA[0]]></valueExpression>
 					</pieDataset>
 					<piePlot>
 						<plot/>

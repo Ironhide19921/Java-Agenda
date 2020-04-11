@@ -7,28 +7,24 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<parameter name="Fecha" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT personas.EquipoPref ,personas.CodPostal, COUNT( idPersona ) AS cantidadPorEquipo, 
-( SELECT COUNT( personas.EquipoPref  ) *100 / COUNT( A.idpersona )
+		<![CDATA[SELECT personas.equipoPref ,personas.codPostal, COUNT( idPersona ) AS cantidadPorEquipo, 
+( SELECT COUNT( personas.equipoPref  ) *100 / COUNT( A.idpersona )
 FROM agenda.personas AS A
 ) AS porcentaje
 FROM agenda.personas
-GROUP BY personas.EquipoPref]]>
+GROUP BY personas.equipoPref]]>
 	</queryString>
-	<field name="EquipoPref" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="EquipoPref"/>
+	<field name="equipoPref" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="equipoPref"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
 	</field>
-	<field name="CodPostal" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.label" value="CodPostal"/>
+	<field name="codPostal" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="codPostal"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="personas"/>
-	</field>
-	<field name="cantidadPorEquipo" class="java.lang.Long">
-		<property name="com.jaspersoft.studio.field.label" value="cantidadPorEquipo"/>
 	</field>
 	<field name="porcentaje" class="java.math.BigDecimal">
 		<property name="com.jaspersoft.studio.field.label" value="porcentaje"/>
 	</field>
-	<sortField name="CodPostal"/>
 	<title>
 		<band height="146" splitType="Stretch">
 			<frame>
@@ -87,16 +83,16 @@ GROUP BY personas.EquipoPref]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="47" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<textField>
 				<reportElement x="280" y="10" width="100" height="30" uuid="0c2b9c00-eec9-4f57-bda0-98b0962e99eb"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{CodPostal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codPostal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="2" y="10" width="170" height="30" uuid="31c4fb1c-75ff-4d98-883f-03e35b4b1095"/>
 				<textElement textAlignment="Left"/>
-				<textFieldExpression><![CDATA[$F{EquipoPref}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{equipoPref}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -119,14 +115,14 @@ GROUP BY personas.EquipoPref]]>
 				<reportElement x="10" y="4" width="520" height="225" uuid="36c19a89-ac6d-4a52-84fc-c320f34efff6"/>
 				<pieChart>
 					<chart evaluationTime="Report">
-						<reportElement x="10" y="10" width="500" height="200" uuid="d7b2e26b-e401-4dd6-a90d-004e8a914240"/>
+						<reportElement x="10" y="10" width="500" height="200" uuid="cf658a04-d214-453c-ae76-022d80037cd6"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
 						<dataset resetType="Report"/>
-						<keyExpression><![CDATA[$F{EquipoPref}]]></keyExpression>
+						<keyExpression><![CDATA[$F{equipoPref}]]></keyExpression>
 						<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
 						<labelExpression><![CDATA[$F{porcentaje}.toPlainString()]]></labelExpression>
 					</pieDataset>
