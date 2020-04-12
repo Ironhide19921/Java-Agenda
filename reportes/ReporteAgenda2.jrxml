@@ -122,7 +122,7 @@ GROUP BY personas.equipoPref]]>
 						<chartLegend/>
 					</chart>
 					<pieDataset>
-						<dataset resetType="Reporte"/>
+						<dataset resetType="Report"/>
 						<keyExpression><![CDATA[$F{equipoPref}]]></keyExpression>
 						<valueExpression><![CDATA[$F{porcentaje}]]></valueExpression>
 						<labelExpression><![CDATA[$F{porcentaje}.toPlainString()]]></labelExpression>
