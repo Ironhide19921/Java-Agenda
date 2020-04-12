@@ -16,6 +16,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import persistencia.conexion.ConexionReporte;
 import dto.PersonaDTO;
 
 public class ReporteAgenda
@@ -33,8 +34,12 @@ public class ReporteAgenda
     	try		{
 			this.reporte = (JasperReport) JRLoader.loadObjectFromFile( "reportes" + File.separator + "ReporteAgenda2.jasper" );
 			System.out.println("ReporteAgenda.jasper");
-			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap, 
-					new JRBeanCollectionDataSource(personas));
+			this.reporteLleno = JasperFillManager.fillReport(this.reporte, parametersMap,
+					//Conexion solo a campos de la DB
+					//new JRBeanCollectionDataSource(personas)
+					//Conexion para query
+					new ConexionReporte().getSQLConexion()
+					);
     		log.info("Se cargó correctamente el reporte");
 		}
 		catch( JRException ex ) 
