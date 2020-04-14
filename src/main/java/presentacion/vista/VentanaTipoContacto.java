@@ -38,8 +38,8 @@ public class VentanaTipoContacto extends JFrame
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNombreTipoContacto = new JLabel("Nombre TipoContacto");
-		lblNombreTipoContacto.setBounds(30, 41, 119, 16);
+		JLabel lblNombreTipoContacto = new JLabel("Tipo de Contacto");
+		lblNombreTipoContacto.setBounds(30, 41, 140, 16);
 		panel.add(lblNombreTipoContacto);
 		
         

@@ -118,10 +118,24 @@ public class Controlador implements ActionListener
 			String altura = ventanaPersona.getTxtAltura().getText();
 			String piso = ventanaPersona.getTxtPiso().getText();
 			String depto = ventanaPersona.getTxtDepto().getText();
-			String loc = String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem());
-			String tipo = String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem());
+			//String loc = String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem());
+			//String tipo = String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem());
 			String codPostal = ventanaPersona.getTxtCodPostal().getText();
 			String equipoPref = ventanaPersona.getTxtEquipoPref().getText();
+			
+			String loc = "";
+			if(ventanaPersona.getComboBoxLocalidad().getSelectedItem() == null) {
+				loc = "";
+			}else {
+				loc = String.valueOf(ventanaPersona.getComboBoxLocalidad().getSelectedItem());
+			}
+			
+			String tipo = "";
+			if(ventanaPersona.getComboBoxTipoContacto().getSelectedItem() == null) {
+				tipo = "";
+			}else {
+				tipo = String.valueOf(ventanaPersona.getComboBoxTipoContacto().getSelectedItem());
+			}
 			
 			
 			if(validarCampos(nombre, tel, email, cumple, calle, altura, codPostal, equipoPref)){
@@ -264,9 +278,17 @@ public class Controlador implements ActionListener
 			{
 				int id = Integer.parseInt(String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila, 0)));
 				String nombre = String.valueOf(this.vistaLocalidad.getModelLocalidades().getValueAt(fila,1));
-				LocalidadDTO nuevaLocalidad = new LocalidadDTO(id, nombre);
-				this.localidad.editarLocalidad(nuevaLocalidad);
-				this.refrescarTablaLocalidades();
+				if(validarCampo(nombre)) {
+					JOptionPane.showMessageDialog(null, 
+							"El campo no puede estar vacío",
+							"Campo vacio",
+							JOptionPane.ERROR_MESSAGE);	
+					refrescarTablaLocalidades();
+				}else {
+					LocalidadDTO nuevaLocalidad = new LocalidadDTO(id, nombre);
+					this.localidad.editarLocalidad(nuevaLocalidad);
+					this.refrescarTablaLocalidades();
+				}
 			}
 		}
 		private void editarTipoContacto(ActionEvent e) {
